@@ -1,0 +1,7 @@
+*.pyc
+/logs
+/static
+/media
+/.pydevproject
+/.project
+/.idea

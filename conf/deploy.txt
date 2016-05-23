@@ -1,0 +1,178 @@
+﻿1、安装和配置图形界面
+#安装图形界面
+yum groupinstall "Desktop" "X Window System" "Chinese Support"
+#设置init 启动级别
+/etc/inittab
+id:3:initdefault:#文字界面
+id:5:initdefault:#图形界面
+#设置桌面语言
+~/.bashrc
+export LANG="zh_CN.UTF-8"
+
+2、安装和配置数据库
+#安装数据库# centos7 mariadb
+yum install mysql-server mysql
+#设置管理员密码
+mysqladmin -u root -p password 'new_password'
+#创建数据库
+CREATE DATABASE `DATABASE_NAME` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+#通过grant命令新建用户
+grant all on sms.* to 'sms'@'111.11.84.251' identified by '123456';
+flush privileges;
+#root 远程访问
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'hello' WITH GRANT OPTION;
+
+
+2.1mysql 主从配置
+GRANT REPLICATION SLAVE ON *.* TO 'backup'@'111.11.84.252' IDENTIFIED BY '123456';
+
+
+#备份数据库，并同步到从库
+关闭cmpp2d cmpp2filter httpd
+mysqldump -uroot -phello sms > dump.sql
+scp mysql root@111.11.84.252:/root
+mysql -uroot -phello sms < dump.sql
+
+#master
+#配置/etc/my.cnf.d/server.cnf
+[mysqld]
+server-id=1
+log-bin=mysql-bin
+binlog-do-db=sms
+binlog-ignore-db=mysql
+#重启mysql
+service mariadb restart
+#检查配置是否生效
+show variables like 'server_id';
+#检查master参数，slave配置用
+show master status;
+
+#slave
+#配置/etc/my.cnf.d/server.cnf
+[mysqld]
+server-id=2
+log-bin=mysql-bin
+replicate-do-db=sms
+replicate-ignore-db=mysql
+read_only
+#重启mysql
+service mariadb restart
+#检查配置是否生效
+show variables like 'server_id';
+#配置slave master
+slave stop;
+change master to master_host='111.11.84.251',master_user='backup',master_password='123456',master_log_file='mysql-bin.000001' ,master_log_pos=51279;
+#测试配置是否生效
+SHOW SLAVE STATUS\G
+Slave_IO_Running: Yes
+Slave_SQL_Running: Yes
+#进一步测试数据同步是否成功
+
+3、安装和部署Django及类库
+#yum 安装
+yum install epel-release
+yum install Django14 python-pip MySQL-python
+yum install gcc python-devel
+#pip 安装
+pip install cython xlrd gevent importlib pycrypto redis
+
+4、系统升级
+#系统升级命令
+yum update -y
+#/boot满，无法更新kernel
+uname -a
+rpm -q kernel
+rpm -e kernel-xx.xx.xx
+
+5、部署django wsig on apache
+#安装apache和相关管理工具
+#安装apache
+#下载软件包：
+apr
+apr-util
+pcre
+httpd
+#解压命令：
+tar -jxvf DirName.tar.bz2
+#安装编译器
+yum install gcc -y
+yum install gcc-c++ -y
+#安装apr
+./configure --prefix=/usr/local/apr/
+make
+make install
+#安装apr-util
+./configure --prefix=/usr/local/apr-util -with-apr=/usr/local/apr/bin/apr-1-config
+make
+make install
+#安装pcre
+./configure --prefix=/usr/local/pcre
+make
+make install
+#安装apache
+./configure --prefix=/usr/local/apache/ --with-apr=/usr/local/apr --with-apr-util=/usr/local/apr-util/ --with-pcre=/usr/local/pcre/
+make
+make install
+#apache 命令
+/usr/local/apache/bin/apachectl start
+#安装mod_wsgi
+export PATH=$PATH:/usr/local/apache/bin/
+pip install mod_wsgi
+cp /usr/lib64/python2.7/site-packages/mod_wsgi/server/mod_wsgi-py27.so /usr/local/apache/modules/mod_wsgi.so
+
+安装其他
+yum install system-config-firewall system-config-services.noarch
+#配置httpd.conf
+vi /usr/local/apache/conf/httpd.conf
+修改User apache
+修改Group apache
+尾部增加:
+#Disable Trace
+TraceEnable off
+Include conf/extra/httpd-wsgi.conf
+#配置httpd-wsgi.conf
+vi /usr/local/apache/conf/extra/httpd-wsgi.conf
+参见附件
+#管理selinux
+/etc/selinux/config
+SELINUX=disabled
+#打开防火墙端口，设置httpd和mysqld自启动
+/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+/etc/rc.d/init.d/iptables save
+chkconfig --level 2345 httpd on
+chkconfig --level 2345 mysqld on
+service service_name restart
+
+6、网络配置
+禁用NetworkManager
+chkconfig --level 2345 NetworkManager off
+/etc/sysconfig/network-scripts/backup/gen.py
+参见附件
+
+7、服务相关
+chkconfig --level 2345 service_name on
+chkconfig --level 2345 service_name off
+chkconfig --add service_name
+chkconfig --del service_name
+
+8、vnc-server
+#安装和使用
+yum install tigervnc-server
+vncserver[:1]
+vncserver -kill <X-display>
+vncserver -list
+#配置gnome
+.vnc/xstartup
+# xterm -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
+# twm &
+gnome-session &
+#ssh -L
+ssh -L 5901:remoteip:5901 user@remoteip
+
+9、ssl
+openssl req -new -x509 -days 365 -nodes -out cert.pem -keyout key.pem
+
+10、mysql 备份和恢复
+gzip -d *.gz
+drop / create database
+mysql -u root -pxxxx sms < *.sql

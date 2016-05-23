@@ -1,0 +1,6 @@
+﻿1、删除重复键值数据
+select id from sms_sendtask where id in (select id from sms_sendtask10);
+delete from sms_cmpp2send where sms_task_id=3879;
+delete from sms_qtppsend where sms_task_id=3879;
+delete from sms_msgsend where msgTask_id=3879;
+delete from sms_sendtask where id =3879;

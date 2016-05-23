@@ -1,0 +1,25 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Export</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>发送日期</th>
+        <th>用户</th>
+        <th>业务类型</th>
+        <th>发送状态</th>
+        <th>发送条数（拆分后）</th>
+    </tr>
+    {% for data in data_set %}
+        <tr>
+            <td>{{ data.year }}-{{ data.month }}-{{ data.day }}</td>
+            <td>{{ data.msg_user__name }}</td>
+            <td>{{ data.channle_cfg }}</td>
+            <td>{{ data.msg_stat }}</td>
+            <td>{{ data.msg_count__sum }}</td>
+        </tr>
+    {% endfor %}
+</table>
+</body>

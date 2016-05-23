@@ -1,0 +1,41 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Export</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>编号</th>
+        <th>号码</th>
+        <th>扩展码</th>
+        <th>内容</th>
+        <th>拆分条数</th>
+        <th>状态</th>
+        <th>创建时间</th>
+        <th>发送时间</th>
+        <th>回执时间</th>
+        <th>回执内容</th>
+        <th>状态报告时间</th>
+        <th>状态报告内容</th>
+        <th>用户</th>
+    </tr>
+    {% for msg in msg_list %}
+        <tr>
+            <td>{{ msg.id }}</td>
+            <td>{{ msg.dest_terminal_id }}</td>
+            <td>{{ msg.src_id }}</td>
+            <td>{{ msg.msg_content }}</td>
+            <td>{{ msg.msg_count }}</td>
+            <td>{{ msg.get_msg_stat_display }}</td>
+            <td>{{ msg.msg_init_time }}</td>
+            <td>{{ msg.msg_send_time }}</td>
+            <td>{{ msg.msg_ack_time }}</td>
+            <td>{{ msg.msg_ack_result }}</td>
+            <td>{{ msg.msg_feed_time }}</td>
+            <td>{{ msg.msg_feed_result }}</td>
+            <td>{{ msg.msg_user.name }}</td>
+        </tr>
+    {% endfor %}
+</table>
+</body>

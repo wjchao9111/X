@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>欢迎使用</title>
+
+    <script src="static/ExtJS/ext-all.js"></script>
+    <script src="static/ExtJS/ext-theme-neptune.js"></script>
+    <link rel="stylesheet" href="static/ExtJS/css/ext-theme-neptune-all.css">
+
+    <script src="static/ExtJS/x-all.js"></script>
+
+    <style type="text/css">p {
+        margin: 5px;
+    }</style>
+    <script type="text/javascript">
+        var tools;
+        var user = null;
+        var open_user_reset_pass_window = function (usercode) {
+            var record = {data: {code: usercode}};
+            var resetWindow = Ext.create('X.view.UserResetPassWindow', {record: record});
+            resetWindow.show();
+            return false;
+        };
+        var page_login = function () {
+            page_shift(false);
+            var loginWindow = Ext.create('X.view.LoginWindow', {
+                success: function () {
+                    var page = tools.getViewPort();
+                    var permtree = tools.getCmp(page, {tag: 'permtree'});
+                    permtree.store.load();
+                    page_show();
+                }
+            });
+            loginWindow.show();
+        };
+        var page_logout = function () {
+            Ext.Ajax.request({
+                url: 'base/user-logout/',
+                params: {},
+                method: 'GET',
+                success: function (response, options) {
+                    page_login();
+                },
+                failure: function (response, options) {
+                    page_login();
+                }
+            });
+            return false;
+        };
+
+        var page_shift = function (show) {
+            if (show) {
+                document.body.style.background = "";
+                tools.showPage();
+                tools.showWin();
+            }
+            else {
+                document.body.style.background = style = "#f5f5f5";
+                tools.hidePage();
+                tools.hideWin();
+            }
+        };
+
+        var page_show = function () {
+            var page = tools.getViewPort();
+            page.hide();
+            var tag = tools.getCmp(page, {tag: 'tools'});
+            Ext.Ajax.request({
+                url: 'base/user-info/',
+                params: {},
+                method: 'GET',
+                success: function (response, options) {
+                    try {
+                        var json = Ext.decode(response.responseText);
+                        var new_user = json.user.code;
+                        if (new_user != user) {
+                            tools.clearAll();
+                        }
+                        user = new_user;
+                        tag.getEl().setHTML('<p style="font-size:16px;font-weight:bold;" align="right">欢迎' + json.user.name + ' <a href="#" onclick="open_user_reset_pass_window(' + "'" + json.user.code + "'" + '); return false;" style="color:#0000FF">修改密码</a>/<a href="#" onclick="page_logout();return false;" style="color:#0000FF">注销</a></p>');
+                        page.show();
+                        page_shift(true);
+                    } catch (e) {
+                        page.show();
+                        page_login();
+                    }
+                },
+                failure: function (response, options) {
+                    page.show();
+                    page_login();
+                }
+            });
+        };
+
+        Ext.onReady(function () {
+            Ext.Loader.setPath("X", " ./static/ExtJS");
+            tools = Ext.create('X.util.Tools');
+            Ext.tip.QuickTipManager.init();
+
+            var page = Ext.create('X.view.MainFrame', {id: 'MainFrame'});
+            page_show();
+        });
+    </script>
+</head>
+<body>
+<img src="/static/img/dynamic.png" style="display:none">
+</body>
+</html>
