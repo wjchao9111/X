@@ -11,7 +11,7 @@
 start() {
         echo -n $"Starting cmpp2celery server: "
         cd /opt/sms-impl/
-        ./cmpp2celery > /dev/null &
+        su apache -c 'celery multi start "worker-X" -A X --autoscale=4,2 --pidfile="/var/run/celery/%N.pid" --logfile="/var/log/celery/%N.log"' > /dev/null &
         # daemon /opt/sms-impl/cmpp2celery &
         ### Create the lock file ###
         touch /var/lock/subsys/cmpp2celery
@@ -22,6 +22,7 @@ start() {
 # Restart the service cmpp2celery
 stop() {
         echo -n $"Stopping cmpp2celery server: "
+        celery multi stopwait "worker-X" --pidfile="/var/run/celery/%N.pid"
         killproc cmpp2celery
         ### Now, delete the lock file ###
         rm -f /var/lock/subsys/cmpp2celery
