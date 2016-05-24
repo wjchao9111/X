@@ -10,7 +10,8 @@
 # Start the service cmpp2celery
 start() {
         echo -n $"Starting cmpp2celery server: "
-        /opt/sms-impl/cmpp2celery > /dev/null &
+        cd /opt/sms-impl/
+        ./cmpp2celery > /dev/null &
         # daemon /opt/sms-impl/cmpp2celery &
         ### Create the lock file ###
         touch /var/lock/subsys/cmpp2celery
