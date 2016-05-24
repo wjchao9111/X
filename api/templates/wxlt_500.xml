@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/"><soap11env:Body><soap11env:Fault><faultcode>soap11env:Client.SoapError</faultcode><faultstring>No {http://schemas.xmlsoap.org/soap/envelope/}Envelope element was found!</faultstring><faultactor></faultactor></soap11env:Fault></soap11env:Body></soap11env:Envelope>

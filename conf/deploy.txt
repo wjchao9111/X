@@ -74,7 +74,7 @@ yum install epel-release
 yum install Django14 python-pip MySQL-python
 yum install gcc python-devel
 #pip 安装
-pip install cython xlrd gevent importlib pycrypto redis
+pip install cython xlrd gevent importlib pycrypto redis celery
 
 4、系统升级
 #系统升级命令
@@ -154,6 +154,8 @@ chkconfig --level 2345 service_name on
 chkconfig --level 2345 service_name off
 chkconfig --add service_name
 chkconfig --del service_name
+
+service_name cmpp2d cmpp2filter forward cmpp2celery
 
 8、vnc-server
 #安装和使用

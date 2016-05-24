@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<senv:Envelope xmlns:tns="wxlt.api.mas.sjz.cmcc.com" xmlns:senv="http://schemas.xmlsoap.org/soap/envelope/">
+ <senv:Body>
+  <tns:{{ action }}Response>
+   <tns:{{ action }}Result>{{ response }}</tns:{{ action }}Result>
+  </tns:{{ action }}Response>
+ </senv:Body>
+</senv:Envelope>
