@@ -74,7 +74,9 @@ yum install epel-release
 yum install Django14 python-pip MySQL-python
 yum install gcc python-devel
 #pip 安装
-pip install cython xlrd gevent importlib pycrypto redis celery
+pip install cython xlrd gevent importlib pycrypto redis celery xlwt xlrd spyne
+
+wget http://downloads.sourceforge.net/project/pydes/pydes/2.0.1/pyDes-2.0.1.zip?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fpydes%2F&ts=1464111735&use_mirror=jaist
 
 4、系统升级
 #系统升级命令
@@ -178,3 +180,15 @@ openssl req -new -x509 -days 365 -nodes -out cert.pem -keyout key.pem
 gzip -d *.gz
 drop / create database
 mysql -u root -pxxxx sms < *.sql
+
+
+11.celery
+修改/etc/passwd apache /bin/bash
+mkdir /var/log/celery
+chown apache /var/log/celery
+chgrp apache /var/log/celery
+mkdir /var/run/celery
+chown apache /var/run/celery
+chgrp apache /var/run/celery
+
+service redis start
