@@ -1,20 +1,18 @@
 # -*- coding: utf-8 -*-
 import hashlib
-import string
-import random
 import pickle
+import random
+import string
 import time
 
 import redis
-
 from django.views.decorators.csrf import csrf_exempt
 
-from base.models import User
-from X.tools.model import get_object
 from X.tools.middleware import JsonResponse
-from sms.serv.smstools import get_api_user
-from sms.views import get_task, send_task_prepare_sync
-
+from X.tools.model import get_object
+from base.models import User
+from sms.tasks import send_task_prepare_sync
+from sms.views import get_task
 
 # Create your views here.
 redis_obj = redis.Redis()
@@ -152,7 +150,7 @@ def redis_get_token(user):
     r.set(redis_get_key('token', token), user.id)
     r.expire(redis_get_key('token', token), 1800)
     r.set(redis_get_key('last_token', user.id), token)
-    r.expire(redis_get_key('last_token', user.id), 1800/10)
+    r.expire(redis_get_key('last_token', user.id), 1800 / 10)
     return token
 
 
@@ -180,7 +178,7 @@ def redis_get_traffic_control(uid):
 
 def get_user_by_code(code):
     user = get_object(User, code=code)
-    #if user in get_api_user():
+    # if user in get_api_user():
     return user
 
 

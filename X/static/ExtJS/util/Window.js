@@ -1,6 +1,8 @@
 Ext.define('X.util.Window', {
     extend: 'Ext.window.Window',
 
+    timeout: 10000,
+    waitmsg: '正在提交，请稍等！',
     url: null,
     layout: 'fit',
     button_list: [],
@@ -49,10 +51,11 @@ Ext.define('X.util.Window', {
             return false;
         }
         form.getForm().submit({
-            url: this.url,
+            url: me.url,
             method: 'POST',
+            timeout: me.timeout,
             waitTitle: "提示",
-            waitMsg: 'Submitting your data',
+            waitMsg: me.waitmsg,
             success: function (form, action) {
                 try {
                     var json = Ext.decode(action.response.responseText);

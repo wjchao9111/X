@@ -22,7 +22,7 @@ if v1 == 1 and v2 <= 4:
     getattr(django.core.management, 'setup_environ')(X.settings)
 
 from sms.models import *
-from sms.views import get_msg_count
+from sms.tasks import get_msg_count
 
 modle_list = [
     MsgSend,

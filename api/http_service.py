@@ -1,7 +1,8 @@
 from X.tools import lazy_loader_const
 from X.tools.middleware import JsonResponse
 from base.models import User
-from sms.views import get_task, send_task_prepare_sync
+from sms.tasks import send_task_prepare_sync
+from sms.views import get_task
 
 http_user_list = ['hbzh_admin']
 

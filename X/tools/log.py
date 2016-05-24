@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import traceback
 import StringIO
 import logging
 import pprint
-from X.settings import debugging
+import traceback
 
 
 def get_exc():

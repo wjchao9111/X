@@ -1,22 +1,20 @@
 # -*- coding: utf-8 -*-
-from base64 import b64encode, b64decode
-import urllib
 import xml.etree.ElementTree as ET
-from django.http import HttpResponse
-
-from spyne.application import Application
-from spyne.decorator import rpc
-from spyne.service import ServiceBase
-from spyne.model.primitive import Unicode
-from spyne.protocol.soap import Soap11
+from base64 import b64encode, b64decode
 
 from pyDes import triple_des, CBC, PAD_PKCS5
+from spyne.application import Application
+from spyne.decorator import rpc
+from spyne.model.primitive import Unicode
+from spyne.protocol.soap import Soap11
+from spyne.service import ServiceBase
 
 from X.tools import lazy_loader_const, log
-from sms.views import get_task, send_task_prepare_sync
-from api.views import redis_pop_obj
-from api.models import WxltConfig
 from X.tools.model import get_object
+from api.models import WxltConfig
+from api.views import redis_pop_obj
+from sms.tasks import send_task_prepare_sync
+from sms.views import get_task
 
 
 @lazy_loader_const

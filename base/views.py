@@ -2,13 +2,14 @@
 
 import time
 
+from X.tools.mail import send_mail
 from X.tools.middleware import JsonResponse
 from X.tools.model import get_object
-from base.verify import model_check, model_filter
-from base.models import User, Role, Permission
-from sms.views import get_task, send_task_prepare_sync
 from api.views import get_random_num
-from X.tools.mail import send_mail
+from base.models import User, Role, Permission
+from base.verify import model_check, model_filter
+from sms.tasks import send_task_prepare_sync
+from sms.views import get_task
 
 
 # Create your views here.

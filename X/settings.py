@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from __future__ import absolute_import
+
 import os
 import socket
-
 import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -152,6 +153,15 @@ SESSION_SAVE_EVERY_REQUEST = True
 
 email_server = {'name': 'smtp.139.com', 'user': 'chaowang.sjz@139.com', 'passwd': 'Ff@000001'}
 
+# Celery settings
+BROKER_URL = 'redis://127.0.0.1:6379/0'
+
+#: Only add pickle to this list if your broker is secured
+#: from unwanted access (see userguide/security.html)
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
@@ -214,15 +224,6 @@ LOGGING = {
             'interval': 1,
             'formatter': 'standard',
         },
-        'process_handler': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/process.log'),
-            'when': 'MIDNIGHT',
-            'backupCount': 180,
-            'interval': 1,
-            'formatter': 'standard',
-        },
         'common_handler': {
             'level': 'DEBUG',
             'class': 'logging.handlers.TimedRotatingFileHandler',
@@ -241,10 +242,10 @@ LOGGING = {
             'interval': 1,
             'formatter': 'standard',
         },
-        'file_handler': {
+        'celery_handler': {
             'level': 'DEBUG',
             'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/file.log'),
+            'filename': os.path.join(BASE_DIR, 'logs/celery.log'),
             'when': 'MIDNIGHT',
             'backupCount': 180,
             'interval': 1,
@@ -277,11 +278,6 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': False
         },
-        'process': {
-            'handlers': ['process_handler'],
-            'level': 'DEBUG',
-            'propagate': False
-        },
         'common': {
             'handlers': ['common_handler'],
             'level': 'DEBUG',
@@ -292,8 +288,13 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': False
         },
-        'file': {
-            'handlers': ['file_handler'],
+        'celery': {
+            'handlers': ['celery_handler'],
+            'level': 'DEBUG',
+            'propagate': False
+        },
+        'celery.bootsteps': {
+            'handlers': ['celery_handler'],
             'level': 'DEBUG',
             'propagate': False
         },

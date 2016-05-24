@@ -4,7 +4,6 @@ import datetime
 import re
 
 from X.tools import lazy_loader_const
-from X.tools.log import log
 from X.tools.model import *
 from X.tools.task import *
 from filter.models import *
