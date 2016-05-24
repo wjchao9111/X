@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import json
 import datetime
-from django.db import IntegrityError
+import json
 
+from django.db import IntegrityError
 from django.http import HttpResponse
-from django.http.request import split_domain_port
 
 from X.tools.exception import VerifyException
 
@@ -100,18 +99,6 @@ class AuthMiddleware:
                     return None
 
         return JsonResponse({'success': False, 'message': http_403_error})
-
-
-class HackHostMiddleware:
-    def __init__(self):
-        pass
-
-    def process_request(self, request):
-        if 'HTTP_HOST' in request.META:
-            host = request.META['HTTP_HOST']
-            domain, port = split_domain_port(host)
-            if domain in ['111.11.84.251','111.11.84.252']:
-                request.META['HTTP_HOST'] = domain
 
 
 class JsonResponse(HttpResponse):
