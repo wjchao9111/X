@@ -54,6 +54,7 @@ MIDDLEWARE_CLASSES = (
     'X.tools.middleware.JsonMiddleware',
     'X.tools.middleware.AuthMiddleware',
     'X.tools.middleware.ExceptionMiddleware',
+    'X.tools.middleware.HackHostMiddleware',
     # 'django.middleware.transaction.TransactionMiddleware',
 )
 

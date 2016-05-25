@@ -71,10 +71,12 @@ Slave_SQL_Running: Yes
 3、安装和部署Django及类库
 #yum 安装
 yum install epel-release
-yum install Django14 python-pip MySQL-python
-yum install gcc python-devel
+yum install python-pip MySQL-python python-devel redis mod_wsgi
+#for feodora #yum install redhat-rpm-config
 #pip 安装
-pip install cython xlrd gevent importlib pycrypto redis celery xlwt xlrd spyne
+pip install "django<1.9"
+pip install cython xlrd gevent importlib pycrypto redis celery xlwt spyne git lxml
+# lxml 装不上 ln -s /usr/include/libxml2/libxml /usr/include/libxml
 
 wget http://downloads.sourceforge.net/project/pydes/pydes/2.0.1/pyDes-2.0.1.zip?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fpydes%2F&ts=1464111735&use_mirror=jaist
 
@@ -131,6 +133,9 @@ vi /usr/local/apache/conf/httpd.conf
 尾部增加:
 #Disable Trace
 TraceEnable off
+ServerTokens Prod
+ServerSignature off
+
 Include conf/extra/httpd-wsgi.conf
 #配置httpd-wsgi.conf
 vi /usr/local/apache/conf/extra/httpd-wsgi.conf
@@ -183,7 +188,7 @@ mysql -u root -pxxxx sms < *.sql
 
 
 11.celery
-修改/etc/passwd apache /bin/bash
+vi /etc/passwd apache /bin/bash
 mkdir /var/log/celery
 chown apache /var/log/celery
 chgrp apache /var/log/celery
@@ -192,3 +197,15 @@ chown apache /var/run/celery
 chgrp apache /var/run/celery
 
 service redis start
+
+12.logs dir
+cd /root/sms-impl
+mkdir logs
+chown apache logs/
+chgrp apache logs/
+mkdir /opt/sms-impl
+mkdir /opt/sms-impl/logs
+chown apache /opt/sms-impl/logs
+chgrp apache /opt/sms-impl/logs
+
+13.信息安全配置
