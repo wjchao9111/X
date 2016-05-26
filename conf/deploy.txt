@@ -188,7 +188,7 @@ mysql -u root -pxxxx sms < *.sql
 
 
 11.celery
-vi /etc/passwd apache /bin/bash
+vi /etc/passwd #apache /bin/bash
 mkdir /var/log/celery
 chown apache /var/log/celery
 chgrp apache /var/log/celery

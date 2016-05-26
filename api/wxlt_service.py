@@ -268,7 +268,8 @@ def service(request):
 
 class WxltService(ServiceBase):
     @rpc(Unicode, _returns=Unicode)
-    def echo(self, echoRequest):
+    def echo(self, name):
+        echoRequest = name
         echoResponse = echo(echoRequest)
         return echoResponse
 
