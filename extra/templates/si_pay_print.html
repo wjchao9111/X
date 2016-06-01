@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> 打印粘贴单 </TITLE>
+<style type="text/css">
+    table {
+        margin : 3px;
+        border-collapse : collapse;
+    }
+    td {
+        border : 1px solid;
+    }
+</style>
+
+<SCRIPT>
+    //用于设置打印参数
+    function printBase() {
+        factory.printing.header = ""; //页眉
+        factory.printing.footer = ""; //页脚
+        factory.printing.portrait = false; //true为纵向打印，false为横向打印
+        factory.printing.leftMargin = 10.0; //左页边距
+        factory.printing.topMargin = 5.0; //上页边距
+        factory.printing.rightMargin = 0.75; //右页边距
+        factory.printing.bottomMargin = 1.5; //下页边距
+    }
+
+    //使界面最大化
+    maxWin();
+    function maxWin()
+    {
+        var aw = screen.availWidth;
+        var ah = screen.availHeight;
+        window.moveTo(0, 0);
+        window.resizeTo(aw, ah);
+    }
+
+    function printTure()
+    {
+        printBase();
+        document.all("button").style.display = "none";//隐藏按钮
+        //factory.printing.Preview();
+        factory.printing.Print(true);
+        document.all("button").style.display = "block";//显示按钮
+    }
+    
+    function printPreview()
+    {
+        printBase();
+        document.all("button").style.display = "none";//隐藏按钮
+        factory.printing.Preview();
+        document.all("button").style.display = "block";//显示按钮
+    }
+</SCRIPT>
+</HEAD>
+<BODY>
+    <OBJECT id="factory" codeBase="/static/lib/smsx.cab#Version=6,3,438,06" height="0" width="0" classid=  "clsid:1663ed61-23eb-11d2-b92f-008048fdd814" viewastext> </OBJECT>
+
+    <div id="button" style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 100%; PADDING-TOP: 0">
+        <table height="15" cellSpacing="1" cellPadding="4" width="100%" bgColor="#ddf3ff" border="0">
+            <tr>
+                <td align="center" bgColor="#ddf3ff" style="border : 0px solid;">
+                    <input id="print" type="button" value="打印" onclick="printTure()">
+                    <input id="preview" type="button" value="打印预览" onclick="printPreview()">   
+                </td>
+            </tr>
+        </table>
+    </div>
+    <table width="100%" height="750">
+        <tr>
+            <td rowspan=5 width="80"></td>
+            <td rowspan=5 width="5" style="border : 0px solid;"></td>
+            <td rowspan=5 width="15" style="border : 0px solid;border-left: 1px dashed"></td>
+            <td rowspan=2 width="62">本页单据</td>
+            <td rowspan=2 width="25">总附件张数</td>
+            <td rowspan=2 width="25">粘贴单张数</td>
+            <td rowspan=2 width="80">金额</td>
+            <td rowspan=2 width="66">总经理意见</td>
+            <td rowspan=2 width="66">主管总经理意见</td>
+            <td rowspan=2 width="66">财务部意见</td>
+            <td rowspan=2 width="66">会签部门意见</td>
+            <td colspan=3 height="30" align="center">经办部门</td>
+            <td rowspan=5 style="border : 0px solid;" valign="top"><img src="data:image/png;base64,{{ base64_img }}" width="70%" style="margin-left:10"/></td>
+        </tr>
+        <tr>
+            <td width="66" height="30">领导签字</td>
+            <td width="66">验收人签字</td>
+            <td width="66">经办人签字</td>
+        </tr>
+        <tr>
+            <td height="40"></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+        </tr>
+        <tr>
+            <td colspan=11 height=3 style="border : 0px solid;"></td>
+        </tr>
+        <tr>
+            <td colspan=11 style="border : 0px solid;border-left: 1px dashed;border-top: 1px dashed" valign="top">
+                <p align="center" style="font-size:48px;font-weight:bold;margin-top:50px; margin-bottom:0px;">
+                    票据粘贴区域
+                </p>
+                <p style="margin-top:10px;margin-left:90px;">
+                    注意事项：<br><br>
+                    1.请从虚线框左侧开始，由上至下平铺粘贴，原始单据间不得重叠覆盖，不得超出粘贴<br>单范围外<br><br>
+                    2.小额零星定额发票可自左至右、呈鱼鳞状均匀排列覆盖粘贴，不得超出粘贴单范围以<br>外<br><br>
+                    3.应使用胶水对原始单据进行粘贴，不得使用订书钉、大头针、回形针、铁夹等固定原<br>始单据，粘贴票据要平整、牢固、整齐；同时保证单据日期、金额以及表明单据性质<br>的内容清晰可见；<br><br>
+                    项目名称：{{ pay_name }}<br><br>
+                </p>
+            </td>
+        </tr>
+    </table>
+    <div style="position: absolute; top: 300px; left: 95px;width: 20px;">票订线</div>
+</BODY>
+</HTML>

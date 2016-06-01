@@ -11,6 +11,10 @@ var re_ser_id = /^[a-zA-Z0-9_]{1,10}$/;
 var re_version = /^[0-9]$/;
 var re_speed = /^[0-9]{1,3}$/;
 var re_suffix = /^[0-9]{1,4}$/;
+var re_digital = /^\d+$/;
+var re_percent = /^\d+%$/;
+var re_share = /^\d+:\d+$/;
+var re_number = /^\d+\.?\d*$/;
 
 var re_phones = /(^(([0-9]{11}|[0-9]{13}),)*([0-9]{11}|[0-9]{13})$)|(^$)/;
 
@@ -42,5 +46,23 @@ if (!String.prototype.getWidth) {
         span.style.fontFamily = "helvetica, arial, verdana, sans-serif";
 
         return span.offsetWidth;
+    }
+}
+
+if (!Date.prototype.format) {
+    Date.prototype.format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
     }
 }

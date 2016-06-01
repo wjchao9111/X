@@ -42,7 +42,11 @@ Ext.define('X.view.LoginWindow', {
             btn.disable();
             var text = btn.text;
             var interval = setInterval(function () {
-                wait_interval(btn, text, --wait_time);
+                try {
+                    wait_interval(btn, text, --wait_time);
+                }
+                catch (ex) {
+                }
             }, 1000);
             setTimeout(function () {
                 window.clearInterval(interval);

@@ -127,6 +127,10 @@ def object_list(function):
         if 'hide_field' in kwargs:
             kwargs.pop('hide_field')
 
+        order_by = kwargs.get('order_by', None)
+        if 'order_by' in kwargs:
+            kwargs.pop('order_by')
+
         qs = function(request, *args, **kwargs)
 
         if query:
@@ -135,24 +139,33 @@ def object_list(function):
                 q = q | Q(**{field + '__contains': query})
             qs = qs.filter(q)
 
+        if order_by:
+            qs = qs.order_by(order_by)
+
         if export == None:
             obj_count = qs.count()
             model_list = qs[start:limit + start]
         else:
             model_list = qs
+
         obj_list = []
         model = None
         for model in model_list:
-            obj = model.__dict__
-            for key in obj.keys():
-                if hasattr(model, 'get_%s_display' % key):
-                    obj[key + '_display'] = getattr(model, 'get_%s_display' % key)()
-                if key.endswith('_id'):
-                    key = key[:-3]
-                    if hasattr(model, key):
-                        val = getattr(model, key)
-                        if isinstance(val, Model):
-                            obj[key] = str(val)
+            if isinstance(model, Model):
+                obj = model.__dict__
+                for key in obj.keys():
+                    if hasattr(model, 'get_%s_display' % key):
+                        obj[key + '_display'] = getattr(model, 'get_%s_display' % key)()
+                    if key.endswith('_id'):
+                        key = key[:-3]
+                        if hasattr(model, key):
+                            val = getattr(model, key)
+                            if isinstance(val, Model):
+                                obj[key] = str(val)
+                if 'name' not in obj:
+                    obj['name'] = unicode(model)
+            else:  # model is dict
+                obj = model
             for key in obj.keys():
                 if key.startswith('_') or key in hide_field:
                     obj.pop(key)
@@ -175,10 +188,10 @@ def object_fill(function):
         if 'hide_field' in kwargs:
             kwargs.pop('hide_field')
 
-        persist_field = kwargs.get('persist_field', [])
-        if 'persist_field' in kwargs:
-            kwargs.pop('persist_field')
-        persist_field.append('id')
+        protected_field = kwargs.get('protected_field', [])
+        if 'protected_field' in kwargs:
+            kwargs.pop('protected_field')
+        protected_field.append('id')
 
         model = function(request, *args, **kwargs)
 
@@ -189,13 +202,17 @@ def object_fill(function):
         for key in obj:
             if hasattr(model, key):
                 value = obj.get(key)
-                if key in persist_field and not obj.get(key):
+                if key in protected_field and not obj.get(key):
                     continue
                 if (key.endswith('_id') and key[:-3] in meta_fields) or key == 'id':
                     if value == "":
                         value = None
                     else:
                         value = int(value)
+                if type(key in meta_fields and model._meta.fields[meta_fields.index(key)]).__name__ in ['DateField',
+                                                                                                        'DateTimeField']:
+                    if value == "":
+                        value = None
                 setattr(model, key, value)
 
         return model

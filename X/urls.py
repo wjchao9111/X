@@ -12,6 +12,7 @@ urlpatterns = patterns(
     url(r'^sms/', include('sms.urls')),
     url(r'^filter/', include('filter.urls')),
     url(r'^api/', include('api.urls')),
+    url(r'^extra/', include('extra.urls')),
     url(r'^$', 'X.views.static', {'template': 'index.html'}),
     url(r'^su/$', 'X.views.su'),
 )

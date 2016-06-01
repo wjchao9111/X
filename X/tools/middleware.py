@@ -6,6 +6,7 @@ import json
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.http.request import split_domain_port
+from django.utils.datastructures import MergeDict
 
 from X.tools.exception import VerifyException
 
@@ -18,10 +19,14 @@ class JsonMiddleware:
 
     def process_request(self, request):
         request.DATA = {}
-        if request.method == "POST":
-            request.DATA = request.POST
-        if request.method == "GET":
-            request.DATA = request.GET
+        # for key in request.GET:
+        #     request.DATA[key] = request.GET[key]
+        # for key in request.POST:
+        #     request.DATA[key] = request.POST[key]
+        # for key in request.FILES:
+        #     request.DATA[key] = request.FILES[key]
+        request.DATA = MergeDict(request.REQUEST, request.FILES)
+
         j_data = {}
         try:
             if request.body and request.body[0] in ['[', '{']:
@@ -63,7 +68,10 @@ class ExceptionMiddleware:
 
     def process_exception(self, request, exception):
         if type(exception) == VerifyException:
-            return JsonResponse({'success': False, 'message': verify_error})
+            if exception.message:
+                return JsonResponse({'success': False, 'message': u'错误信息：' + exception.message})
+            else:
+                return JsonResponse({'success': False, 'message': verify_error})
         if type(exception) == IntegrityError:
             return JsonResponse({'success': False, 'message': integrity_error})
 
@@ -124,4 +132,6 @@ class JsonEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, datetime.datetime):
             return '%04d-%02d-%02d %02d:%02d:%02d' % (obj.year, obj.month, obj.day, obj.hour, obj.minute, obj.second)
+        if isinstance(obj, datetime.date):
+            return '%04d-%02d-%02d' % (obj.year, obj.month, obj.day)
         return json.JSONEncoder.default(self, obj)

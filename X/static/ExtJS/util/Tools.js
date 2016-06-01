@@ -26,7 +26,7 @@ Ext.define('X.util.Tools', {
 
     showPage: function () {
         var page = this.getViewPort();
-        for (i in page.items.items) {
+        for (var i in page.items.items) {
             var item = page.items.items[i];
             item.show();
         }
@@ -34,7 +34,7 @@ Ext.define('X.util.Tools', {
 
     hidePage: function () {
         var page = this.getViewPort();
-        for (i in page.items.items) {
+        for (var i in page.items.items) {
             var item = page.items.items[i];
             item.hide();
         }
@@ -122,7 +122,7 @@ Ext.define('X.util.Tools', {
 
     clearAll: function () {
         var page = this.getViewPort();
-        tabpanel = this.getCmp(page, {xtype: 'tabpanel'});
+        var tabpanel = this.getCmp(page, {xtype: 'tabpanel'});
         tabpanel.items.each(function (tab) {
             if (tab.closable) {
                 tabpanel.remove(tab);

@@ -1,9 +1,13 @@
 # -*-coding:utf-8 -*-
-from django.core.files.storage import FileSystemStorage
-from django.conf import settings
-import os, time, random
+import os
+import random
+import time
+import uuid
 
-from X.settings import debugging
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+
+from X.settings import debugging, MEDIA_ROOT
 
 
 class FileStorage(FileSystemStorage):
@@ -25,3 +29,36 @@ class FileStorage(FileSystemStorage):
         else:
             path = path.encode('utf8')
         return os.path.exists(path)
+
+
+class TempFile():
+    def __init__(self):
+        self.path = os.path.join(MEDIA_ROOT, 'temp', str(uuid.uuid1()))
+        if not os.path.exists(os.path.join(MEDIA_ROOT, 'temp')):
+            os.makedirs(os.path.join(MEDIA_ROOT, 'temp'), mode=0o755)
+        self.file = None
+
+    def open(self, mode):
+        if self.file:
+            self.file.close()
+            self.file = None
+        self.file = open(self.path, mode)
+        return self.file
+
+    def write_and_save(self, data, mode='wb'):
+        file = open(self.path, mode)
+        file.write(data)
+        file.close()
+
+    def read_and_close(self, mode='rb'):
+        file = open(self.path, mode)
+        data = file.read()
+        file.close()
+        return data
+
+    def close(self, remove=True):
+        if self.file:
+            self.file.close()
+            self.file = None
+        if remove:
+            os.remove(self.path)

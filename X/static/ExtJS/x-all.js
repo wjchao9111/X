@@ -1,4 +1,4 @@
-var kv_data='{"cmpp2.stat": [["enabled", "\u542f\u7528"], ["disabled", "\u505c\u7528"]], "perm.type": [["menu", "\u83dc\u5355"], ["ajax", "URL"]], "section.carrier": [["CM", "\u4e2d\u56fd\u79fb\u52a8"], ["CU", "\u4e2d\u56fd\u8054\u901a"], ["CT", "\u4e2d\u56fd\u7535\u4fe1"]], "user.stat": [["normal", "\u6b63\u5e38"], ["disabled", "\u7981\u7528"]], "send.type": [["default", "\u666e\u901a\u4efb\u52a1"], ["dynamic", "\u52a8\u6001\u4efb\u52a1"]], "cmpp2.ssl": [["enabled", "\u542f\u7528"], ["disabled", "\u505c\u7528"]], "filter.stat": [["new", "\u65b0\u5efa"], ["enabled", "\u542f\u7528"], ["disabled", "\u505c\u7528"]], "dept.stat": [["normal", "\u6b63\u5e38"], ["disabled", "\u7981\u7528"]], "grp.mod": [["00", "\u79c1\u4eba"], ["01", "\u5185\u90e8\u53ea\u8bfb"], ["02", "\u5185\u90e8\u8bfb\u5199"], ["11", "\u5168\u90e8\u53ea\u8bfb"], ["12", "\u5916\u90e8\u53ea\u8bfb"], ["22", "\u5b8c\u5168\u5f00\u653e"]], "send.stat": [["init", "\u5df2\u521b\u5efa"], ["pre.start", "\u5f00\u59cb\u5206\u89e3"], ["pre.end", "\u5206\u89e3\u5b8c\u6210"], ["pre.fail", "\u5206\u89e3\u5931\u8d25"], ["send.start", "\u5f00\u59cb\u53d1\u9001"], ["send.end", "\u53d1\u9001\u5b8c\u6210"], ["send.fail", "\u53d1\u9001\u5931\u8d25"], ["cancel", "\u53d6\u6d88\u53d1\u9001"]], "dept.type": [["system", "\u7cfb\u7edf"], ["company", "\u516c\u53f8"], ["dept", "\u90e8\u95e8"]], "user.priority": [[5, "\u9ad8"], [7, "\u4e2d"], [9, "\u4f4e"]], "cmpp2.msg_fmt": [[8, "UTF-16BE"], [15, "gbk"]], "role.type": [["super", "\u8d85\u7ea7\u7ba1\u7406\u5458"], ["admin", "\u7ba1\u7406\u5458"], ["user", "\u7528\u6237"]], "filtercmpp2.stat": [["enabled", "\u542f\u7528"], ["disabled", "\u505c\u7528"]], "role.stat": [["normal", "\u6b63\u5e38"], ["disabled", "\u7981\u7528"]], "proc.pid": [[0, "Processor 0"]], "addr.sex": [["male", "\u7537"], ["female", "\u5973"]], "qtpp.stat": [["enabled", "\u542f\u7528"], ["disabled", "\u505c\u7528"]], "perm.stat": [["normal", "\u6b63\u5e38"], ["disabled", "\u7981\u7528"]]}';
+var kv_data='{"cmpp2.stat": [["enabled", "\u542f\u7528"], ["disabled", "\u505c\u7528"]], "perm.type": [["menu", "\u83dc\u5355"], ["ajax", "URL"]], "section.carrier": [["CM", "\u4e2d\u56fd\u79fb\u52a8"], ["CU", "\u4e2d\u56fd\u8054\u901a"], ["CT", "\u4e2d\u56fd\u7535\u4fe1"]], "user.stat": [["normal", "\u6b63\u5e38"], ["disabled", "\u7981\u7528"]], "send.type": [["default", "\u666e\u901a\u4efb\u52a1"], ["dynamic", "\u52a8\u6001\u4efb\u52a1"]], "cmpp2.ssl": [["enabled", "\u542f\u7528"], ["disabled", "\u505c\u7528"]], "filter.stat": [["new", "\u65b0\u5efa"], ["enabled", "\u542f\u7528"], ["disabled", "\u505c\u7528"]], "dept.stat": [["normal", "\u6b63\u5e38"], ["disabled", "\u7981\u7528"]], "grp.mod": [["00", "\u79c1\u4eba"], ["01", "\u5185\u90e8\u53ea\u8bfb"], ["02", "\u5185\u90e8\u8bfb\u5199"], ["11", "\u5168\u90e8\u53ea\u8bfb"], ["12", "\u5916\u90e8\u53ea\u8bfb"], ["22", "\u5b8c\u5168\u5f00\u653e"]], "send.stat": [["init", "\u5df2\u521b\u5efa"], ["pre.start", "\u5f00\u59cb\u5206\u89e3"], ["pre.end", "\u5206\u89e3\u5b8c\u6210"], ["pre.fail", "\u5206\u89e3\u5931\u8d25"], ["send.start", "\u5f00\u59cb\u53d1\u9001"], ["send.end", "\u53d1\u9001\u5b8c\u6210"], ["send.fail", "\u53d1\u9001\u5931\u8d25"], ["cancel", "\u53d6\u6d88\u53d1\u9001"]], "si_pay.stat": [["init", "\u65b0\u5efa"], ["allot", "\u5df2\u5206\u914d"], ["verify", "\u5df2\u9a8c\u8bc1"], ["close", "\u5df2\u5173\u95ed"]], "dept.type": [["system", "\u7cfb\u7edf"], ["company", "\u516c\u53f8"], ["dept", "\u90e8\u95e8"]], "user.priority": [[5, "\u9ad8"], [7, "\u4e2d"], [9, "\u4f4e"]], "cmpp2.msg_fmt": [[8, "UTF-16BE"], [15, "gbk"]], "role.type": [["super", "\u8d85\u7ea7\u7ba1\u7406\u5458"], ["admin", "\u7ba1\u7406\u5458"], ["user", "\u7528\u6237"]], "filtercmpp2.stat": [["enabled", "\u542f\u7528"], ["disabled", "\u505c\u7528"]], "role.stat": [["normal", "\u6b63\u5e38"], ["disabled", "\u7981\u7528"]], "proc.pid": [[0, "Processor 0"]], "addr.sex": [["male", "\u7537"], ["female", "\u5973"]], "qtpp.stat": [["enabled", "\u542f\u7528"], ["disabled", "\u505c\u7528"]], "perm.stat": [["normal", "\u6b63\u5e38"], ["disabled", "\u7981\u7528"]]}';
 var http_403_error='403 Forbidden：操作被禁止！<br>可能的原因：<br>1、网络状况不佳；<br>2、您未登陆系统；<br>3、登陆会话已超时；<br>4、您正在尝试执行没有权限的操作；<br>建议的操作：<br>1、重新之前的操作；<br>2、刷新浏览器或重新登陆；<br>3、联系您的企业管理员核实操作权限；<br>你知道吗？<br>会话超时被中断怎么办，点击右上角注销链接；<br>重新登陆后可以恢复到注销前的状态；';
 Ext.Ajax.timeout = 10000;
 var re_phone = /^[0-9]{11}$/;
@@ -13,6 +13,10 @@ var re_ser_id = /^[a-zA-Z0-9_]{1,10}$/;
 var re_version = /^[0-9]$/;
 var re_speed = /^[0-9]{1,3}$/;
 var re_suffix = /^[0-9]{1,4}$/;
+var re_digital = /^\d+$/;
+var re_percent = /^\d+%$/;
+var re_share = /^\d+:\d+$/;
+var re_number = /^\d+\.?\d*$/;
 
 var re_phones = /(^(([0-9]{11}|[0-9]{13}),)*([0-9]{11}|[0-9]{13})$)|(^$)/;
 
@@ -44,6 +48,24 @@ if (!String.prototype.getWidth) {
         span.style.fontFamily = "helvetica, arial, verdana, sans-serif";
 
         return span.offsetWidth;
+    }
+}
+
+if (!Date.prototype.format) {
+    Date.prototype.format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
     }
 }Ext.define('X.util.Chart', {
     extend: 'Ext.panel.Panel',
@@ -147,6 +169,7 @@ if (!String.prototype.getWidth) {
     loadMask: true,
     multiSelect: true,
 
+    //cfg: {default_value_field_name:'',enable_button:['btn1','btn2']}
     constructor: function (cfg) {
         var me = this;
         cfg = cfg || {};
@@ -173,22 +196,34 @@ if (!String.prototype.getWidth) {
             var grid = me;
             switch (type) {
                 case 'insert':
-                    Ext.create(action, {grid: me}).show();
+                    var cfg = {grid: me};
+                    for (var key in me.cfg) {
+                        if (key.startsWith('default_value_')) {
+                            cfg[key] = me.cfg[key]
+                        }
+                    }
+                    Ext.create(action, cfg).show();
                     break;
                 case 'update':
                     if (!grid.getSelectionModel().getCount() >= 1) {
                         Ext.Msg.alert('提示', '没有选择任何数据!');
                         return false;
                     }
-                    var record = grid.getSelectionModel().getSelection()[0];
-                    Ext.create(action, {grid: grid, record: record}).show();
+                    //var record = grid.getSelectionModel().getSelection()[0];
+                    var record = grid.getStore().getAt(grid.getStore().indexOf(grid.getSelectionModel().getSelection()[0]));
+                    var cfg = {grid: grid, record: record};
+                    for (var key in me.cfg) {
+                        if (key.startsWith('default_value_')) {
+                            cfg[key] = me.cfg[key]
+                        }
+                    }
+                    Ext.create(action, cfg).show();
                     break;
                 case 'delete':
                     if (!grid.getSelectionModel().getCount() >= 1) {
                         Ext.Msg.alert('提示', '没有选择任何数据!');
                         return false;
                     }
-                    var record = grid.getSelectionModel().getSelection()[0];
                     Ext.Msg.confirm('请确认', '是否真的要删除数据？', function (button, text) {
                         if (button != 'yes') {
                             return false;
@@ -221,12 +256,43 @@ if (!String.prototype.getWidth) {
                         });
                     });
                     break;
+                case 'ajax':
+                    if (!grid.getSelectionModel().getCount() >= 1) {
+                        Ext.Msg.alert('提示', '没有选择任何数据!');
+                        return false;
+                    }
+                    //var record = grid.getSelectionModel().getSelection()[0];
+                    var record = grid.getStore().getAt(grid.getStore().indexOf(grid.getSelectionModel().getSelection()[0]));
+                    Ext.Ajax.request({
+                        url: action + record.get("id") + '/',
+                        params: {},
+                        method: 'POST',
+                        success: function (response, options) {
+                            try {
+                                var json = Ext.decode(response.responseText);
+                                grid.getStore().reload();
+                                Ext.Msg.alert('成功', json.message);
+                            } catch (e) {
+                                Ext.Msg.alert('错误', response.responseText);
+                            }
+                        },
+                        failure: function (response, options) {
+                            try {
+                                var json = Ext.decode(response.responseText);
+                                Ext.Msg.alert('错误', json.message);
+                            } catch (e) {
+                                Ext.Msg.alert('错误', response.responseText);
+                            }
+                        }
+                    });
+                    break;
                 case 'function':
                     if (!grid.getSelectionModel().getCount() >= 1) {
                         Ext.Msg.alert('提示', '没有选择任何数据!');
                         return false;
                     }
-                    var record = grid.getSelectionModel().getSelection()[0];
+                    //var record = grid.getSelectionModel().getSelection()[0];
+                    var record = grid.getStore().getAt(grid.getStore().indexOf(grid.getSelectionModel().getSelection()[0]));
                     action(me, record);
                     break;
                 case 'export':
@@ -245,10 +311,12 @@ if (!String.prototype.getWidth) {
 
         var menu = [];
         for (var i in button_list) {
-            var text = button_list[i].text;
-            var type = button_list[i].type;
-            var action = button_list[i].action;
-            menu.push({text: text, type: type, action: action, handler: on_click});
+            if (!me.cfg.enable_button || me.cfg.enable_button.indexOf(button_list[i].text) > -1) {
+                var text = button_list[i].text;
+                var type = button_list[i].type;
+                var action = button_list[i].action;
+                menu.push({text: text, type: type, action: action, handler: on_click});
+            }
         }
         var columns = [];
         for (var i = 0; i < model.fields.length; i++) {
@@ -410,7 +478,7 @@ if (!String.prototype.getWidth) {
 
     showPage: function () {
         var page = this.getViewPort();
-        for (i in page.items.items) {
+        for (var i in page.items.items) {
             var item = page.items.items[i];
             item.show();
         }
@@ -418,7 +486,7 @@ if (!String.prototype.getWidth) {
 
     hidePage: function () {
         var page = this.getViewPort();
-        for (i in page.items.items) {
+        for (var i in page.items.items) {
             var item = page.items.items[i];
             item.hide();
         }
@@ -506,7 +574,7 @@ if (!String.prototype.getWidth) {
 
     clearAll: function () {
         var page = this.getViewPort();
-        tabpanel = this.getCmp(page, {xtype: 'tabpanel'});
+        var tabpanel = this.getCmp(page, {xtype: 'tabpanel'});
         tabpanel.items.each(function (tab) {
             if (tab.closable) {
                 tabpanel.remove(tab);
@@ -679,6 +747,21 @@ if (!String.prototype.getWidth) {
                 else {
                     me.setTitle('新增' + me.base_title);
                 }
+                var form = tools.getCmp(me, {xtype: "form"}).form;
+                var field_list = form.getFields().items;
+                for (var i in field_list) {
+                    var field = field_list[i];
+                    var key = field.name;
+                    var value = field.value;
+                    if (field.store && !field.store.type) {
+                        var store = field.store;
+                        store.remoteFilter = true;
+                        store.proxy.encodeFilters = function (filters) {
+                            return filters[0].value;
+                        };
+                        store.filter({id: 'query', property: 'query', value: value});
+                    }
+                }
             }
         }
     }
@@ -710,7 +793,13 @@ if (!String.prototype.getWidth) {
                         regexText: '您输入的' + me.base_title + '格式不正确！'
                     })
                 }
-
+                if (field.field == 'filefield') {
+                    if (me.record && me.record.get(field.name)) {
+                        Ext.apply(input, {
+                            allowBlank: true
+                        })
+                    }
+                }
                 if (field.field == 'combo') {
                     Ext.applyIf(input, {
                         typeAhead: true,
@@ -740,6 +829,11 @@ if (!String.prototype.getWidth) {
                         regex: field.regex,
                         regexText: '您输入的' + me.base_title + '格式不正确！'
                     })
+                }
+                if (!me.record && me.cfg['default_value_' + field.name]) {
+                    Ext.applyIf(input, {
+                        value: me.cfg['default_value_' + field.name]
+                    });
                 }
                 if (!me.record && field.value) {
                     Ext.applyIf(input, {
@@ -991,6 +1085,88 @@ if (!String.prototype.getWidth) {
         {name: 'dept_id', label: '归属'},
         {name: 'dept', label: '归属', show: true}
     ]
+});Ext.define('X.model.SI_ContractModel', {
+    extend: 'Ext.data.Model', fields: [
+        {name: 'id', label: '编号', show: true, field: 'hiddenfield'},
+        {name: 'si_name', label: '合作伙伴名称', show: true, field: 'textfield'},
+        {name: 'prd_name', label: '业务名称', show: true, field: 'textfield'},
+        {name: 'tax_rate', label: '开票税率', show: true, field: 'textfield', regex: re_percent},
+        {name: 'si_share', label: '分成比例', show: true, field: 'textfield', regex: re_share},
+        {name: 'si_contact', label: '联系人', show: true, field: 'textfield'},
+        {name: 'si_phone', label: '联系电话', show: true, field: 'textfield', regex: re_phone},
+        {name: 'no', label: '合同编号', show: true, field: 'textfield'},
+        {name: 'name', label: '合同名称', show: true, field: 'textfield'},
+        {name: 'sign_date', label: '签署日期', show: true, field: 'datefield', field_cfg: {format: 'Y-m-d'}},
+        {name: 'eff_date', label: '合同起始日', show: true, field: 'datefield', field_cfg: {format: 'Y-m-d'}},
+        {name: 'vilid_term', label: '合同年限', show: true, field: 'textfield'},
+        {name: 'exp_date', label: '合同终止日', show: true, field: 'datefield', field_cfg: {format: 'Y-m-d'}},
+        {name: 'delay_month', label: '延期支付月数', show: true, field: 'textfield', regex: re_digital},
+        {name: 'off_date', label: '业务下线日', show: true, field: 'datefield', field_cfg: {format: 'Y-m-d'}, blank: true},
+        {name: 'change_log', label: '变更记录', show: true, field: 'textfield', blank: true},
+        {name: 'note', label: '备注', show: true, field: 'textfield', blank: true},
+        {name: 'file', label: '合同文件', field: 'filefield'},
+        {name: 'user', label: '产品经理', show: true},
+        {name: 'init_time', label: '创建时间', show: true, blank: true},
+        {name: 'last_time', label: '更新时间', show: true, blank: true}]
+});Ext.define('X.model.SI_EmptyPayModel', {
+    extend: 'Ext.data.Model', fields: [
+        {name: 'id', label: '编号', show: true, field: 'hiddenfield'},
+        {name: 'pay_no', label: '报账单号', show: true, field: 'textfield', blank: true, regex: /^\d{16}(,\d+)*$/},
+        {name: 'user', label: '操作员', show: true}]
+});Ext.define('X.model.SI_InvoiceModel', {
+    extend: 'Ext.data.Model', fields: [
+        {name: 'id', label: '编号', show: true, field: 'hiddenfield'},
+        {name: 'si_name', label: '供应商名', show: true, field: 'textfield'},
+        {name: 'goods', label: '货物或应税劳务、服务名称', show: true, field: 'textfield'},
+        {name: 'tax_del', label: '不含税价', show: true, field: 'textfield', regex: re_number},
+        {name: 'tax_rate', label: '税率', show: true, field: 'textfield', regex: re_percent},
+        {name: 'tax_add', label: '含税总额', show: true, field: 'textfield', regex: re_number},
+        {name: 'no', label: '增值税专用发票编号', show: true, field: 'textfield', regex: re_digital},
+        {name: 'code', label: '发票代码', show: true, field: 'textfield', regex: re_digital},
+        {name: 'draw_date', label: '开票日期', show: true, field: 'datefield', field_cfg: {format: 'Y-m-d'}},
+        {name: 'recv_date', label: '收票日期', show: true, field: 'datefield', field_cfg: {format: 'Y-m-d'}},
+        {name: 'pay_id', label: '报账单', field: 'combo', store: 'X.store.SI_PayStore'},
+        {name: 'pay', label: '报账单', show: true}]
+});Ext.define('X.model.SI_PayModel', {
+    extend: 'Ext.data.Model', fields: [
+        {name: 'id', label: '编号', show: true, field: 'hiddenfield'},
+        {name: 'prd_name', label: '业务名称', show: true, field: 'textfield'},
+        {name: 'prd_code', label: '业务代码', show: true, field: 'textfield'},
+        {name: 'si_name', label: '供应商名', show: true, field: 'textfield'},
+        {name: 'tax_rate', label: '税率', show: true, field: 'textfield', regex: re_percent},
+        {name: 'tax_add', label: '含税价', show: true, field: 'textfield', regex: re_number},
+        {name: 'tax_del', label: '不含税价', show: true, field: 'textfield', regex: re_number},
+        {name: 'tax', label: '税金', show: true, field: 'textfield', regex: re_number},
+        {name: 'month', label: '结算月份', show: true, field: 'textfield'},
+        {name: 'contract_id', label: '关联合同', field: 'combo', store: 'X.store.SI_ContractStore', blank: true},
+        {name: 'contract', label: '关联合同', show: true, blank: true},
+        {name: 'user_id', label: '产品经理', field: 'combo', store: 'X.store.UserStore', blank: true},
+        {name: 'user', label: '产品经理', show: true, blank: true},
+        {name: 'pay_no', label: '报账单号', show: true, field: 'textfield', blank: true},
+        {name: 'package', label: '报账批次', show: true, field: 'textfield', blank: true},
+        {name: 'pay_stat', label: '报帐状态', field: 'combo', choice: 'si_pay.stat'},
+        {name: 'pay_stat_display', label: '报帐状态', show: true},
+        {name: 'init_time', label: '创建时间', show: true, blank: true},
+        {name: 'last_time', label: '更新时间', show: true, blank: true},
+        {name: 'allot_time', label: '分配时间', show: true, blank: true},
+        {name: 'verify_time', label: '验证时间', show: true, blank: true},
+        {name: 'close_time', label: '关闭时间', show: true, blank: true},
+        {name: 'name', label: '名称'}]
+});Ext.define('X.model.SI_PayPackageModel', {
+    extend: 'Ext.data.Model', fields: [
+        {
+            name: 'package',
+            label: '报账批次',
+            show: true,
+            field: 'textfield',
+            blank: true,
+            value: new Date().format('yyyyMMdd')
+        },
+        {name: 'id__count', label: '报账单数', show: true},
+        {name: 'id__max', label: '最大报账单号'}]
+});Ext.define('X.model.SI_PayUploadModel', {
+    extend: 'Ext.data.Model', fields: [
+        {name: 'file', label: '结算报表', field: 'filefield'}]
 });Ext.define('X.model.SectionModel', {
     extend: 'Ext.data.Model',
     fields: [
@@ -1202,6 +1378,48 @@ if (!String.prototype.getWidth) {
 
     model: 'X.model.RoleModel',
     url: 'base/role-list/'
+});Ext.define('X.store.SI_ContractStore', {
+    extend: 'X.util.Store',
+
+    model: 'X.model.SI_ContractModel',
+    url: 'extra/si-contract-list/'
+});Ext.define('X.store.SI_EmptyPayStore', {
+    extend: 'X.util.Store',
+
+    model: 'X.model.SI_EmptyPayModel',
+    url: 'extra/si-emptypay-list/'
+});Ext.define('X.store.SI_InvoiceStore', {
+    extend: 'X.util.Store',
+
+    model: 'X.model.SI_InvoiceModel',
+    url: function (cfg) {
+        var pay = cfg.pay ? cfg.pay : null;
+        if (pay) {
+            return 'extra/si-invoice-list/' + pay + '/';
+        }
+        else {
+            return 'extra/si-invoice-list/';
+        }
+    }
+});Ext.define('X.store.SI_PayPackageStore', {
+    extend: 'X.util.Store',
+
+    model: 'X.model.SI_PayPackageModel',
+    url: '/extra/si-pay-package-list/'
+});Ext.define('X.store.SI_PayStore', {
+    extend: 'X.util.Store',
+
+    model: 'X.model.SI_PayModel',
+    url: function (cfg) {
+        var stat = cfg.stat ? cfg.stat : 'all';
+        var contract = cfg.contract ? cfg.contract : null;
+        if (contract) {
+            return 'extra/si-pay-list/' + stat + '/' + contract + '/';
+        }
+        else {
+            return 'extra/si-pay-list/' + stat + '/';
+        }
+    }
 });Ext.define('X.store.SectionStore', {
     extend: 'X.util.Store',
 
@@ -1458,7 +1676,11 @@ if (!String.prototype.getWidth) {
             btn.disable();
             var text = btn.text;
             var interval = setInterval(function () {
-                wait_interval(btn, text, --wait_time);
+                try {
+                    wait_interval(btn, text, --wait_time);
+                }
+                catch (ex) {
+                }
             }, 1000);
             setTimeout(function () {
                 window.clearInterval(interval);
@@ -1931,6 +2153,144 @@ if (!String.prototype.getWidth) {
         me.callParent(arguments);
     }
 
+});Ext.define('X.view.SI_ContractEditWindow', {
+    extend: 'X.util.Window',
+
+    height: 550,
+    width: 400,
+    base_title: '合同',
+    base_url: 'extra/si-contract-{0}/',
+    model_name: 'X.model.SI_ContractModel'
+});Ext.define('X.view.SI_ContractList', {
+    extend: 'X.util.List',
+
+    title: 'SI合同管理',
+    model_name: 'X.model.SI_ContractModel',
+    store_name: 'X.store.SI_ContractStore',
+    button_list: [{
+        text: '增加', type: 'insert',
+        action: 'X.view.SI_ContractEditWindow'
+    }, {
+        text: '修改', type: 'update',
+        action: 'X.view.SI_ContractEditWindow'
+    }, {
+        text: '报帐清单', type: 'function',
+        action: function (grid, record) {
+            var stat = "all";
+            var contract = record.get("id");
+            var name = record.get("no") + record.get("name");
+            tools.addTab(Ext.getCmp('MainFrame'), '{"cls":"X.view.SI_PayList","cfg":{"stat": "' + stat + '", "contract": "' + contract + '"}}', '报账清单#' + name);
+        }
+    }, {
+        text: '下载协议', type: 'function',
+        action: function (grid, record) {
+            Ext.Msg.alert('下载协议', '<a href="extra/si-contract-download/' + record.get('id') + '/">' + record.get("no") + record.get("name") + '</a>');
+        }
+    }]
+});Ext.define('X.view.SI_EmptyPayEditWindow', {
+    extend: 'X.util.Window',
+
+    height: 165,
+    width: 400,
+    base_title: '报账单号',
+    base_url: 'extra/si-emptypay-{0}/',
+    model_name: 'X.model.SI_EmptyPayModel'
+});Ext.define('X.view.SI_EmptyPayList', {
+    extend: 'X.util.List',
+
+    title: 'SI报账单号管理',
+    model_name: 'X.model.SI_EmptyPayModel',
+    store_name: 'X.store.SI_EmptyPayStore',
+    button_list: [
+        {text: '增加', type: 'insert', action: 'X.view.SI_EmptyPayEditWindow'},
+        //{text: '修改', type: 'update', action: 'X.view.SI_EmptyPayEditWindow'},
+        {text: '删除', type: 'delete', action: 'extra/si-emptypay-delete/'}]
+});Ext.define('X.view.SI_InvoiceEditWindow', {
+    extend: 'X.util.Window',
+
+    height: 550,
+    width: 400,
+    base_title: '发票',
+    base_url: 'extra/si-invoice-{0}/',
+    model_name: 'X.model.SI_InvoiceModel'
+});Ext.define('X.view.SI_InvoiceList', {
+    extend: 'X.util.List',
+
+    title: 'SI发票管理',
+    model_name: 'X.model.SI_InvoiceModel',
+    store_name: 'X.store.SI_InvoiceStore',
+    button_list: [{
+        text: '增加', type: 'insert',
+        action: 'X.view.SI_InvoiceEditWindow'
+    }, {
+        text: '修改', type: 'update',
+        action: 'X.view.SI_InvoiceEditWindow'
+    }, {
+        text: '删除', type: 'delete', action: 'extra/si-invoice-delete/'
+    }]
+});Ext.define('X.view.SI_PayList', {
+    extend: 'X.util.List',
+
+    title: 'SI报帐管理',
+    model_name: 'X.model.SI_PayModel',
+    store_name: 'X.store.SI_PayStore',
+    button_list: [{
+        text: '关联合同', type: 'ajax', action: '/extra/si-pay-attach/'
+    }, {
+        text: '发票清单', type: 'function',
+        action: function (grid, record) {
+            var pay = record.get("id");
+            var si_name = record.get("si_name").replace('VSP', '');
+            var name = record.get("si_name") + record.get("prd_name") + record.get("month");
+            tools.addTab(Ext.getCmp('MainFrame'), '{"cls":"X.view.SI_InvoiceList","cfg":{"pay": "' + pay + '", "default_value_pay_id":' + pay + ', "default_value_si_name":"' + si_name + '"}}', '发票清单#' + name);
+        }
+    }, {
+        text: '验证发票', type: 'ajax', action: '/extra/si-pay-verify/'
+    }, {
+        text: '打印粘贴单', type: 'function',
+        action: function (grid, record) {
+            window.open('/extra/si-pay-print/' + record.get('id') + '/');
+        }
+    }, {
+        text: '稽核收票', type: 'ajax', action: '/extra/si-pay-close/'
+    }]
+});Ext.define('X.view.SI_PayPackageList', {
+    extend: 'X.util.List',
+
+    title: 'SI报帐管理',
+    model_name: 'X.model.SI_PayPackageModel',
+    store_name: 'X.store.SI_PayPackageStore',
+    button_list: [{
+        text: '报帐批次新增', type: 'insert', action: 'X.view.SI_PayPackageWindow'
+    }, {
+        text: '打印汇总报表', type: 'function',
+        action: function (grid, record) {
+            Ext.Msg.alert('打印汇总报表', '<a href="extra/si-pay-package-print/' + record.get('package') + '/min/" target="_blank">打印汇总报表</a><br><a href="extra/si-pay-package-print/' + record.get('package') + '/month/" target="_blank">打印月报表</a>');
+        }
+    }, {
+        text: '下载报帐附件', type: 'function',
+        action: function (grid, record) {
+            Ext.Msg.alert('下载报帐附件', '<a href="extra/si-pay-package-download/' + record.get('package') + '/" target="_blank">下载报帐附件</a>');
+        }
+    }]
+});Ext.define('X.view.SI_PayPackageWindow', {
+    extend: 'X.util.Window',
+
+    height: 165,
+    width: 400,
+    base_title: '报帐批次',
+    insert_title: '报帐批次新增',
+    insert_url: 'extra/si-pay-package-rest/',
+    model_name: 'X.model.SI_PayPackageModel'
+});Ext.define('X.view.SI_PayUploadWindow', {
+    extend: 'X.util.Window',
+
+    height: 165,
+    width: 400,
+    base_title: '结算报表',
+    insert_title: '上传结算报表',
+    insert_url: 'extra/si-pay-upload/',
+    model_name: 'X.model.SI_PayUploadModel'
 });Ext.define('X.view.SectionEditWindow', {
     extend: 'X.util.Window',
 

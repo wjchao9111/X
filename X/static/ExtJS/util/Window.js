@@ -122,6 +122,21 @@ Ext.define('X.util.Window', {
                 else {
                     me.setTitle('新增' + me.base_title);
                 }
+                var form = tools.getCmp(me, {xtype: "form"}).form;
+                var field_list = form.getFields().items;
+                for (var i in field_list) {
+                    var field = field_list[i];
+                    var key = field.name;
+                    var value = field.value;
+                    if (field.store && !field.store.type) {
+                        var store = field.store;
+                        store.remoteFilter = true;
+                        store.proxy.encodeFilters = function (filters) {
+                            return filters[0].value;
+                        };
+                        store.filter({id: 'query', property: 'query', value: value});
+                    }
+                }
             }
         }
     }
@@ -153,7 +168,13 @@ Ext.define('X.util.Window', {
                         regexText: '您输入的' + me.base_title + '格式不正确！'
                     })
                 }
-
+                if (field.field == 'filefield') {
+                    if (me.record && me.record.get(field.name)) {
+                        Ext.apply(input, {
+                            allowBlank: true
+                        })
+                    }
+                }
                 if (field.field == 'combo') {
                     Ext.applyIf(input, {
                         typeAhead: true,
@@ -183,6 +204,11 @@ Ext.define('X.util.Window', {
                         regex: field.regex,
                         regexText: '您输入的' + me.base_title + '格式不正确！'
                     })
+                }
+                if (!me.record && me.cfg['default_value_' + field.name]) {
+                    Ext.applyIf(input, {
+                        value: me.cfg['default_value_' + field.name]
+                    });
                 }
                 if (!me.record && field.value) {
                     Ext.applyIf(input, {

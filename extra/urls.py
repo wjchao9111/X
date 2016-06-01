@@ -1,0 +1,37 @@
+from django.conf.urls import patterns, url
+
+from X.tools.model import common_list, common_save, common_delete
+
+urlpatterns = patterns(
+    'extra.views',
+    url(r'^si-contract-list/$', common_list,
+        {'model_type': 'extra.models.SI_Contract', 'query_field': ['no', 'name', 'si_name', 'prd_name'],
+         'order_by': '-id'}),
+    url(r'^si-contract-insert/$', common_save, {'model_type': 'extra.models.SI_Contract', 'protected_field': ['file']}),
+    url(r'^si-contract-update/$', common_save, {'model_type': 'extra.models.SI_Contract', 'protected_field': ['file']}),
+    url(r'^si-contract-delete/$', common_delete, {'model_type': 'extra.models.SI_Contract'}),
+    url(r'^si-contract-download/(\d+)/$', 'si_contract_download'),
+    url(r'^si-pay-upload/$', 'si_pay_upload'),
+    url(r'^si-pay-list/(?P<stat>.+)/(?P<si_contract_id>\d+)/$', 'si_pay_list',
+        {'query_field': ['prd_name', 'prd_code', 'si_name'], 'order_by': '-id'}),
+    url(r'^si-pay-list/(?P<stat>.+)/$', 'si_pay_list',
+        {'query_field': ['prd_name', 'prd_code', 'si_name'], 'order_by': '-id'}),
+    url(r'^si-pay-attach/(?P<si_pay_id>.+)/$', 'si_pay_attach'),
+    url(r'^si-pay-verify/(?P<si_pay_id>.+)/$', 'si_pay_verify'),
+    url(r'^si-pay-print/(?P<si_pay_id>.+)/$', 'si_pay_print'),
+    url(r'^si-pay-close/(?P<si_pay_id>.+)/$', 'si_pay_close'),
+    url(r'^si-pay-package-rest/$', 'si_pay_package_rest'),
+    url(r'^si-pay-package-list/$', 'si_pay_package_list'),
+    url(r'^si-pay-package-download/(?P<package>.+)/$', 'si_pay_package_download'),
+    url(r'^si-pay-package-print/(?P<package>.+)/(?P<template>.+)/$', 'si_pay_package_print'),
+    url(r'^si-emptypay-list/$', common_list,
+        {'model_type': 'extra.models.SI_EmptyPay', 'query_field': ['pay_no'], 'order_by': '-id'}),
+    url(r'^si-emptypay-insert/$', 'si_emptypay_insert'),
+    url(r'^si-emptypay-update/$', common_save, {'model_type': 'extra.models.SI_EmptyPay'}),
+    url(r'^si-emptypay-delete/$', common_delete, {'model_type': 'extra.models.SI_EmptyPay'}),
+    url(r'^si-invoice-list/(?P<si_pay_id>\d+)/$', 'si_invoice_list', {'query_field': ['si_name'], 'order_by': '-id'}),
+    url(r'^si-invoice-list/$', 'si_invoice_list', {'query_field': ['si_name'], 'order_by': '-id'}),
+    url(r'^si-invoice-insert/$', common_save, {'model_type': 'extra.models.SI_Invoice'}),
+    url(r'^si-invoice-update/$', common_save, {'model_type': 'extra.models.SI_Invoice'}),
+    url(r'^si-invoice-delete/$', common_delete, {'model_type': 'extra.models.SI_Invoice'}),
+)

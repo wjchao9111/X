@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE> 打印结算报表 </TITLE>
+    <style type="text/css">
+        table {
+            margin: 3px;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid;
+        }
+
+        div.PageBreak {
+            page-break-after: always
+        }
+    </style>
+
+    <SCRIPT>
+        //用于设置打印参数
+        function printBase() {
+            factory.printing.header = ""; //页眉
+            factory.printing.footer = ""; //页脚
+            factory.printing.portrait = true; //true为纵向打印，false为横向打印
+            factory.printing.leftMargin = 10.0; //左页边距
+            factory.printing.topMargin = 5.0; //上页边距
+            factory.printing.rightMargin = 0.75; //右页边距
+            factory.printing.bottomMargin = 1.5; //下页边距
+        }
+
+        //使界面最大化
+        maxWin();
+        function maxWin() {
+            var aw = screen.availWidth;
+            var ah = screen.availHeight;
+            window.moveTo(0, 0);
+            window.resizeTo(aw, ah);
+        }
+
+        function printTure() {
+            printBase();
+            document.all("button").style.display = "none";//隐藏按钮
+            //factory.printing.Preview();
+            factory.printing.Print(true);
+            document.all("button").style.display = "block";//显示按钮
+        }
+
+        function printPreview() {
+            printBase();
+            document.all("button").style.display = "none";//隐藏按钮
+            factory.printing.Preview();
+            document.all("button").style.display = "block";//显示按钮
+        }
+    </SCRIPT>
+</HEAD>
+<BODY>
+<OBJECT id="factory" codeBase="/static/lib/smsx.cab#Version=6,3,438,06" height="0" width="0"
+        classid="clsid:1663ed61-23eb-11d2-b92f-008048fdd814" viewastext></OBJECT>
+
+<div id="button"
+     style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 100%; PADDING-TOP: 0">
+    <table height="15" cellSpacing="1" cellPadding="4" width="100%" bgColor="#ddf3ff" border="0">
+        <tr>
+            <td align="center" bgColor="#ddf3ff" style="border : 0px solid;">
+                <input id="print" type="button" value="打印" onclick="printTure()">
+                <input id="preview" type="button" value="打印预览" onclick="printPreview()">
+            </td>
+        </tr>
+    </table>
+</div>
+<table width="100%">
+    <tr>
+        <td colspan="6" align="center">
+            <p style="font-size: larger;font-weight: bold;">省级集团客户业务分SI结算表</p>
+        </td>
+    </tr>
+    <tr>
+        <td><p style="font-weight: bold;">单位</p></td>
+        <td><p style="font-weight: bold;">业务名称</p></td>
+        <td><p style="font-weight: bold;">企业代码</p></td>
+        <td><p style="font-weight: bold;">结算月份</p></td>
+        <td><p style="font-weight: bold;">供应商名</p></td>
+        <td><p style="font-weight: bold;">结算额</p></td>
+    </tr>
+    <tr>
+        <td rowspan="{{ min_report.si_pay_list.count|add:1 }}">石家庄</td>
+        <td colspan="5" style="display: none"></td>
+    </tr>
+    {% for si_pay in min_report.si_pay_list %}
+        <tr>
+            <td>{{ si_pay.prd_name }}</td>
+            <td>{{ si_pay.prd_code }}</td>
+            <td>{{ si_pay.month }}</td>
+            <td>{{ si_pay.si_name }}</td>
+            <td>{{ si_pay.tax_add }}</td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="5">合计</td>
+        <td>{{ min_report.tax_add__sum }}</td>
+    </tr>
+    <tr>
+        <td colspan="6" height="20" style="border : 0px solid;"></td>
+    </tr>
+    <tr>
+        <td height="50" style="border : 0px solid;">专业部门复核人：</td>
+        <td style="border : 0px solid;"></td>
+        <td style="border : 0px solid;"></td>
+        <td style="border : 0px solid;">业支核对人签字盖章：</td>
+        <td style="border : 0px solid;"></td>
+        <td style="border : 0px solid;"></td>
+    </tr>
+    <tr>
+        <td height="50" style="border : 0px solid;">专业部门领导签字：</td>
+        <td style="border : 0px solid;"></td>
+        <td style="border : 0px solid;"></td>
+        <td style="border : 0px solid;">业务支撑部门领导签字：</td>
+        <td style="border : 0px solid;"></td>
+        <td style="border : 0px solid;"></td>
+    </tr>
+    <tr style="border: none">
+        <td height="50" style="border : 0px solid;"></td>
+        <td style="border : 0px solid;"></td>
+        <td style="border : 0px solid;"></td>
+        <td style="border : 0px solid;">稽核中心核对人签字：</td>
+        <td style="border : 0px solid;"></td>
+        <td style="border : 0px solid;"></td>
+    </tr>
+</table>
+<div class="PageBreak"></div>
+<table width="100%">
+    <tr>
+        <td colspan="8" align="center">
+            <p style="font-size: larger;font-weight: bold;">SI业务营销成本分摊表({{ min_report.month_range }})</p>
+        </td>
+    </tr>
+    <tr>
+        <td><p style="font-weight: bold;">业务名称</p></td>
+        <td><p style="font-weight: bold;">供应商名称</p></td>
+        <td><p style="font-weight: bold;">结算所属期间</p></td>
+        <td><p style="font-weight: bold;">应结算费用</p></td>
+        <td><p style="font-weight: bold;">是否有推广业务营销活动</p></td>
+        <td><p style="font-weight: bold;">营销活动名称</p></td>
+        <td><p style="font-weight: bold;">分摊成本</p></td>
+        <td><p style="font-weight: bold;">实际结算费用</p></td>
+    </tr>
+    {% for si_pay in min_report.si_pay_list %}
+        <tr>
+            <td>{{ si_pay.prd_name }}</td>
+            <td>{{ si_pay.si_name }}</td>
+            <td>{{ si_pay.month }}</td>
+            <td>{{ si_pay.tax_add }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ si_pay.tax_add }}</td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="7">合计</td>
+        <td>{{ min_report.tax_add__sum }}</td>
+    </tr>
+    <tr>
+        <td height="50" colspan="2">经办人:</td>
+        <td height="50" colspan="2">复核人:</td>
+        <td height="50" colspan="4">单位领导审批:</td>
+    </tr>
+</table>
+</BODY>
+</HTML>

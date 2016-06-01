@@ -1,0 +1,26 @@
+Ext.define('X.model.SI_PayModel', {
+    extend: 'Ext.data.Model', fields: [
+        {name: 'id', label: '编号', show: true, field: 'hiddenfield'},
+        {name: 'prd_name', label: '业务名称', show: true, field: 'textfield'},
+        {name: 'prd_code', label: '业务代码', show: true, field: 'textfield'},
+        {name: 'si_name', label: '供应商名', show: true, field: 'textfield'},
+        {name: 'tax_rate', label: '税率', show: true, field: 'textfield', regex: re_percent},
+        {name: 'tax_add', label: '含税价', show: true, field: 'textfield', regex: re_number},
+        {name: 'tax_del', label: '不含税价', show: true, field: 'textfield', regex: re_number},
+        {name: 'tax', label: '税金', show: true, field: 'textfield', regex: re_number},
+        {name: 'month', label: '结算月份', show: true, field: 'textfield'},
+        {name: 'contract_id', label: '关联合同', field: 'combo', store: 'X.store.SI_ContractStore', blank: true},
+        {name: 'contract', label: '关联合同', show: true, blank: true},
+        {name: 'user_id', label: '产品经理', field: 'combo', store: 'X.store.UserStore', blank: true},
+        {name: 'user', label: '产品经理', show: true, blank: true},
+        {name: 'pay_no', label: '报账单号', show: true, field: 'textfield', blank: true},
+        {name: 'package', label: '报账批次', show: true, field: 'textfield', blank: true},
+        {name: 'pay_stat', label: '报帐状态', field: 'combo', choice: 'si_pay.stat'},
+        {name: 'pay_stat_display', label: '报帐状态', show: true},
+        {name: 'init_time', label: '创建时间', show: true, blank: true},
+        {name: 'last_time', label: '更新时间', show: true, blank: true},
+        {name: 'allot_time', label: '分配时间', show: true, blank: true},
+        {name: 'verify_time', label: '验证时间', show: true, blank: true},
+        {name: 'close_time', label: '关闭时间', show: true, blank: true},
+        {name: 'name', label: '名称'}]
+});

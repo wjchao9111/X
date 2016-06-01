@@ -4,6 +4,7 @@ Ext.define('X.util.List', {
     loadMask: true,
     multiSelect: true,
 
+    //cfg: {default_value_field_name:'',enable_button:['btn1','btn2']}
     constructor: function (cfg) {
         var me = this;
         cfg = cfg || {};
@@ -30,22 +31,34 @@ Ext.define('X.util.List', {
             var grid = me;
             switch (type) {
                 case 'insert':
-                    Ext.create(action, {grid: me}).show();
+                    var cfg = {grid: me};
+                    for (var key in me.cfg) {
+                        if (key.startsWith('default_value_')) {
+                            cfg[key] = me.cfg[key]
+                        }
+                    }
+                    Ext.create(action, cfg).show();
                     break;
                 case 'update':
                     if (!grid.getSelectionModel().getCount() >= 1) {
                         Ext.Msg.alert('提示', '没有选择任何数据!');
                         return false;
                     }
-                    var record = grid.getSelectionModel().getSelection()[0];
-                    Ext.create(action, {grid: grid, record: record}).show();
+                    //var record = grid.getSelectionModel().getSelection()[0];
+                    var record = grid.getStore().getAt(grid.getStore().indexOf(grid.getSelectionModel().getSelection()[0]));
+                    var cfg = {grid: grid, record: record};
+                    for (var key in me.cfg) {
+                        if (key.startsWith('default_value_')) {
+                            cfg[key] = me.cfg[key]
+                        }
+                    }
+                    Ext.create(action, cfg).show();
                     break;
                 case 'delete':
                     if (!grid.getSelectionModel().getCount() >= 1) {
                         Ext.Msg.alert('提示', '没有选择任何数据!');
                         return false;
                     }
-                    var record = grid.getSelectionModel().getSelection()[0];
                     Ext.Msg.confirm('请确认', '是否真的要删除数据？', function (button, text) {
                         if (button != 'yes') {
                             return false;
@@ -78,12 +91,43 @@ Ext.define('X.util.List', {
                         });
                     });
                     break;
+                case 'ajax':
+                    if (!grid.getSelectionModel().getCount() >= 1) {
+                        Ext.Msg.alert('提示', '没有选择任何数据!');
+                        return false;
+                    }
+                    //var record = grid.getSelectionModel().getSelection()[0];
+                    var record = grid.getStore().getAt(grid.getStore().indexOf(grid.getSelectionModel().getSelection()[0]));
+                    Ext.Ajax.request({
+                        url: action + record.get("id") + '/',
+                        params: {},
+                        method: 'POST',
+                        success: function (response, options) {
+                            try {
+                                var json = Ext.decode(response.responseText);
+                                grid.getStore().reload();
+                                Ext.Msg.alert('成功', json.message);
+                            } catch (e) {
+                                Ext.Msg.alert('错误', response.responseText);
+                            }
+                        },
+                        failure: function (response, options) {
+                            try {
+                                var json = Ext.decode(response.responseText);
+                                Ext.Msg.alert('错误', json.message);
+                            } catch (e) {
+                                Ext.Msg.alert('错误', response.responseText);
+                            }
+                        }
+                    });
+                    break;
                 case 'function':
                     if (!grid.getSelectionModel().getCount() >= 1) {
                         Ext.Msg.alert('提示', '没有选择任何数据!');
                         return false;
                     }
-                    var record = grid.getSelectionModel().getSelection()[0];
+                    //var record = grid.getSelectionModel().getSelection()[0];
+                    var record = grid.getStore().getAt(grid.getStore().indexOf(grid.getSelectionModel().getSelection()[0]));
                     action(me, record);
                     break;
                 case 'export':
@@ -102,10 +146,12 @@ Ext.define('X.util.List', {
 
         var menu = [];
         for (var i in button_list) {
-            var text = button_list[i].text;
-            var type = button_list[i].type;
-            var action = button_list[i].action;
-            menu.push({text: text, type: type, action: action, handler: on_click});
+            if (!me.cfg.enable_button || me.cfg.enable_button.indexOf(button_list[i].text) > -1) {
+                var text = button_list[i].text;
+                var type = button_list[i].type;
+                var action = button_list[i].action;
+                menu.push({text: text, type: type, action: action, handler: on_click});
+            }
         }
         var columns = [];
         for (var i = 0; i < model.fields.length; i++) {

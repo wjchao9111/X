@@ -3,9 +3,9 @@ from X.tools.log import log
 
 
 class VerifyException(Exception):
-    def __init__(self, error=None):
+    def __init__(self, message=None):
         Exception.__init__(self)
-        self.error = error
+        self.message = message
 
 
 def sms_exception(function):

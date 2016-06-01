@@ -7,6 +7,7 @@ from X.tools.middleware import JsonResponse
 from X.tools.model import get_object
 from base.models import User, Role, Permission, Dept
 from addr.models import Address, AddressGroup
+from extra.models import SI_Pay
 from sms.models import Cmpp2Cfg, QtppCfg, SendTask, Processor, CarrierSection
 from filter.models import Cmpp2Cfg as FilterCmpp2Cfg, Filter
 
@@ -52,6 +53,7 @@ choices = {
     'user.priority': User.priority_choices,
     'filtercmpp2.stat': FilterCmpp2Cfg.stat_choices,
     'filter.stat': Filter.stat_choices,
+    'si_pay.stat':SI_Pay.stat_choices
 }
 
 

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE> 增值税专用发票交接登记表 </TITLE>
+    <style type="text/css">
+        table {
+            margin: 3px;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid;
+        }
+
+        div.PageBreak {
+            page-break-after: always
+        }
+    </style>
+
+    <SCRIPT>
+        //用于设置打印参数
+        function printBase() {
+            factory.printing.header = ""; //页眉
+            factory.printing.footer = ""; //页脚
+            factory.printing.portrait = false; //true为纵向打印，false为横向打印
+            factory.printing.leftMargin = 10.0; //左页边距
+            factory.printing.topMargin = 5.0; //上页边距
+            factory.printing.rightMargin = 0.75; //右页边距
+            factory.printing.bottomMargin = 1.5; //下页边距
+        }
+
+        //使界面最大化
+        maxWin();
+        function maxWin() {
+            var aw = screen.availWidth;
+            var ah = screen.availHeight;
+            window.moveTo(0, 0);
+            window.resizeTo(aw, ah);
+        }
+
+        function printTure() {
+            printBase();
+            document.all("button").style.display = "none";//隐藏按钮
+            //factory.printing.Preview();
+            factory.printing.Print(true);
+            document.all("button").style.display = "block";//显示按钮
+        }
+
+        function printPreview() {
+            printBase();
+            document.all("button").style.display = "none";//隐藏按钮
+            factory.printing.Preview();
+            document.all("button").style.display = "block";//显示按钮
+        }
+    </SCRIPT>
+</HEAD>
+<BODY>
+<table width="100%">
+    <tr>
+        <td colspan="14" align="center" style="border : 0px solid;">
+            <p style="font-size: larger;font-weight: bold;">增值税专用发票交接登记表</p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="14" align="center" style="border : 0px solid;">
+            <p style="font-size: larger;font-weight: bold;"></p>
+        </td>
+    </tr>
+    <tr>
+        <td>序号</td>
+        <td>报账单号</td>
+        <td>供应商名称</td>
+        <td>货物或者应税劳务名称</td>
+        <td>不含税价</td>
+        <td>税率</td>
+        <td>含税总额</td>
+        <td>增值税专用发票编号</td>
+        <td>发票代码</td>
+        <td>开票日期</td>
+        <td>收票时间</td>
+        <td>交接时间</td>
+        <td>交接人</td>
+        <td>接收人</td>
+    </tr>
+    {% for si_invoice in si_invoice_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ si_invoice.pay.pay_no }}</td>
+            <td>{{ si_invoice.si_name }}</td>
+            <td>{{ si_invoice.goods }}</td>
+            <td>{{ si_invoice.tax_del }}</td>
+            <td>{{ si_invoice.tax_rate }}</td>
+            <td>{{ si_invoice.tax_add }}</td>
+            <td>{{ si_invoice.no }}</td>
+            <td>{{ si_invoice.code }}</td>
+            <td>{{ si_invoice.draw_date }}</td>
+            <td>{{ si_invoice.recv_date }}</td>
+            <td></td>
+            <td>李艳蕾</td>
+            <td>高慧燕</td>
+        </tr>
+    {% endfor %}
+</table>
+</BODY>
+</HTML>
