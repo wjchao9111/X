@@ -75,7 +75,7 @@ yum install python-pip MySQL-python python-devel redis mod_wsgi
 #for feodora #yum install redhat-rpm-config
 #pip 安装
 pip install "django<1.9"
-pip install cython xlrd gevent importlib pycrypto redis celery xlwt spyne git lxml
+pip install cython xlrd gevent importlib pycrypto redis celery xlwt spyne git lxml hubarcode Shadow
 # lxml 装不上 ln -s /usr/include/libxml2/libxml /usr/include/libxml
 
 wget http://downloads.sourceforge.net/project/pydes/pydes/2.0.1/pyDes-2.0.1.zip?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fpydes%2F&ts=1464111735&use_mirror=jaist
