@@ -1,7 +1,7 @@
 Ext.define('X.util.Window', {
     extend: 'Ext.window.Window',
 
-    timeout: 10000,
+    timeout: 10,
     waitmsg: '正在提交，请稍等！',
     url: null,
     layout: 'fit',
