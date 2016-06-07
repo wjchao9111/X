@@ -3,14 +3,13 @@ import datetime
 from Queue import PriorityQueue
 
 from django.db import transaction, connection
-
 from django.db.models import Max, Q
 
-from X.tools.task import thread_worker_task, gevent_task, sleep
-from X.tools.model import keep_db_alive
-from X.tools.exception import sms_exception
-from X.tools import load_cls, lazy_loader_const, log
 import sms.models
+from X.tools import load_cls, lazy_loader_const, log
+from X.tools.exception import sms_exception
+from X.tools.model import keep_db_alive
+from X.tools.task import thread_worker_task, gevent_task, sleep
 from base.models import User
 from sms.models import SendTask, CarrierSection
 from sms.serv.smsconfig import SmsConfig
@@ -204,8 +203,7 @@ class CommonSendTaskLoader:
         except:
             log("SMS_GET_CUST_CHANNLE_INSTANCE_ERROR", content=[cust, channle_name], logger='sms', level='error')
             return None
-    
-    
+
     @keep_db_alive
     def fetch_new_task(self):  # 使用http://redis.io/
         task_list = SendTask.objects.filter(
@@ -374,8 +372,12 @@ class SendTaskClear:
         for task in SendTask.objects.filter(stat__in=['pre.end', 'send.start', 'send.end']):
             if SendTaskClear.all_done(task):
                 task_list.append(task)
-        if task_list:
-            SendTaskClear.task_save_quick(task_list)
+                try:
+                    SendTaskClear.task_save_quick([task])
+                except:
+                    SendTaskClear.task_save_fix(task)
+        # if task_list:
+        #    SendTaskClear.task_save_quick(task_list)
         return task_list
 
     @staticmethod
@@ -423,6 +425,27 @@ class SendTaskClear:
 
         cursor.execute('delete from sms_msgsend where msg_task_id in (%s)' % str_id_list)
         cursor.execute('delete from sms_sendtask where id in (%s)' % str_id_list)
+
+        # transaction.commit_unless_managed()
+
+    @staticmethod
+    @transaction.atomic
+    def task_save_fix(task):
+        if not task: return
+        id_list = [str(task.id)]
+        str_id_list = ','.join(id_list)
+        cursor = connection.cursor()
+
+        channle_keys = SmsConfig.channle_list.keys()
+        channle_keys.reverse()
+
+        for channle_name in channle_keys:
+            cursor.execute('delete from sms_%s%02d where sms_task_id in (%s)' % (
+                task.access.month, SmsConfig.channle_list.get(channle_name).get('table_name'),
+                str_id_list))
+
+        cursor.execute('delete from sms_msgsend%02d where msg_task_id in (%s)' % (task.access.month, str_id_list))
+        cursor.execute('delete from sms_sendtask%02d where id in (%s)' % (task.access.month, str_id_list))
 
         # transaction.commit_unless_managed()
 
