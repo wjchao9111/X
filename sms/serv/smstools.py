@@ -441,7 +441,7 @@ class SendTaskClear:
 
         for channle_name in channle_keys:
             cursor.execute('delete from sms_%s%02d where sms_task_id in (%s)' % (
-                task.access.month, SmsConfig.channle_list.get(channle_name).get('table_name'),
+                SmsConfig.channle_list.get(channle_name).get('table_name'), task.access.month,
                 str_id_list))
 
         cursor.execute('delete from sms_msgsend%02d where msg_task_id in (%s)' % (task.access.month, str_id_list))
