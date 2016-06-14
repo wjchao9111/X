@@ -16,6 +16,7 @@ from django.utils.http import urlquote
 from hubarcode.code128 import Code128Encoder
 
 from X.settings import BASE_DIR
+from X.tools.log import log
 from X.tools.middleware import JsonResponse
 from X.tools.model import object_list, auto_filter, json_success
 from X.tools.storage import TempFile
@@ -247,6 +248,10 @@ def si_pay_package_download(request, package):
         # 合同
         contract_name = ("%s.%s" % (unicode(si_pay.contract), si_pay.contract.file.name.split('.')[-1]))
         file_path = os.path.join(tempdir.path, si_pay.pay_no, contract_name)
+        import sys
+        log('DEFAULT ENCODING',sys.getdefaultencoding(),'common','error')
+        log('ENCODING TEST', str(u'你好'), 'common', 'error')
+
         f = open(file_path, 'wb')
         f.write(si_pay.contract.file.read())
         zfile.write(file_path, file_path.replace(tempdir.path, ''))
