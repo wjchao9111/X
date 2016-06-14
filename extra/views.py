@@ -247,7 +247,7 @@ def si_pay_package_download(request, package):
         # 合同
         contract_name = ("%s.%s" % (unicode(si_pay.contract), si_pay.contract.file.name.split('.')[-1]))
         file_path = os.path.join(tempdir.path, si_pay.pay_no, contract_name)
-        f = open(file_path, 'wb')
+        f = open(file_path.encode('utf8'), 'wb')
         f.write(si_pay.contract.file.read())
         zfile.write(file_path, file_path.replace(tempdir.path, ''))
         os.remove(file_path)
