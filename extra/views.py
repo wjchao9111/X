@@ -58,7 +58,7 @@ def get_contract_by_pay(si_pay):
     ).order_by("-eff_date")
     for contract in contract_list:
         month_end = get_month_end(year, month, contract.delay_month)
-        if contract.eff_date <= get_month_end and contract.exp_date > month_end:
+        if contract.eff_date <= month_end and contract.exp_date > month_end:
             return contract
     return None
 
