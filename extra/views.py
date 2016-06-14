@@ -247,17 +247,12 @@ def si_pay_package_download(request, package):
         os.mkdir(os.path.join(tempdir.path, si_pay.pay_no))
         # 合同
         contract_name = ("%s.%s" % (unicode(si_pay.contract), si_pay.contract.file.name.split('.')[-1]))
-        file_path = os.path.join(tempdir.path, si_pay.pay_no, contract_name)
-        import sys
-        log('DEFAULT ENCODING',sys.getdefaultencoding(),'common','error')
-        log('ENCODING TEST', str(u'你好'), 'common', 'error')
-
-        f = open(file_path, 'wb')
-        f.write(si_pay.contract.file.read())
+        file_path = os.path.join(tempdir.path, si_pay.pay_no, contract_name).encode('utf8')
+        open(file_path, 'wb').write(si_pay.contract.file.read())
         zfile.write(file_path, file_path.replace(tempdir.path, ''))
         os.remove(file_path)
         # 发票
-        file_path = os.path.join(tempdir.path, si_pay.pay_no, u'增值税专用发票交接登记表.xls')
+        file_path = os.path.join(tempdir.path, si_pay.pay_no, u'增值税专用发票交接登记表.xls').encode('utf8')
         open(file_path, 'w').write(
             unicode(get_template(
                 'si_invoice_print.html'
