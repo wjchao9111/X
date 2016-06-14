@@ -15,6 +15,10 @@
         div.PageBreak {
             page-break-after: always
         }
+
+        .text{
+            mso-number-format:"\@"
+        }
     </style>
 
     <SCRIPT>
@@ -71,7 +75,7 @@
         <td>合作伙伴名称</td>
         <td>业务名称</td>
         <td>开票税率</td>
-        <td>分成比例</td>
+        <td class="text">分成比例</td>
         <td>联系人</td>
         <td>联系电话</td>
         <td>合同编号</td>
@@ -95,7 +99,7 @@
             <td>{{ si_contract.sign_date }}</td>
             <td>{{ si_contract.vilid_term }}</td>
             <td>{{ si_contract.exp_date }}</td>
-            <td>{{ si_contract.off_date }}</td>
+            <td>{% if si_contract.off_date %} {{ si_contract.off_date }} {% endif %}</td>
             <td>{{ si_contract.change_log }}</td>
             <td>{{ si_contract.note }}</td>
         </tr>
