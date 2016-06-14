@@ -256,7 +256,7 @@ def si_pay_package_download(request, package):
             unicode(get_template(
                 'si_invoice_print.html'
             ).render(
-                Context({'si_invoice_list': SI_Contract.objects.all().filter(id__in=[si_pay.contract_id for si_pay in si_pay_list])})
+                Context({'si_invoice_list': si_pay.si_invoice_set.all()})
             )).encode('utf8')
         )
         zfile.write(file_path, file_path.replace(tempdir.path, ''))
@@ -270,7 +270,7 @@ def si_pay_package_download(request, package):
         unicode(get_template(
             'si_contract_print.html'
         ).render(
-            Context({'si_contract_list': si_pay.si_invoice_set.all()})
+            Context({'si_contract_list': SI_Contract.objects.all().filter(id__in=[si_pay.contract_id for si_pay in si_pay_list])})
         )).encode('utf8')
     )
     zfile.write(file_path, file_path.replace(tempdir.path, ''))
