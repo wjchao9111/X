@@ -49,8 +49,8 @@ if (!String.prototype.getWidth) {
     }
 }
 
-if (!String.prototype.startWith) {
-    String.prototype.startWith = function (str) {
+if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function (str) {
         if (str == null || str == "" || this.length == 0 || str.length > this.length)
             return false;
         if (this.substr(0, str.length) == str)
@@ -61,8 +61,8 @@ if (!String.prototype.startWith) {
     }
 }
 
-if (!String.prototype.endWith) {
-    String.prototype.endWith = function (str) {
+if (!String.prototype.endsWith) {
+    String.prototype.endsWith = function (str) {
         if (str == null || str == "" || this.length == 0 || str.length > this.length)
             return false;
         if (this.substring(this.length - str.length) == str)
