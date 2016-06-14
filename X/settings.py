@@ -28,11 +28,6 @@ SECRET_KEY = '+=w^_me4ha#*-ey9ql%@k45$x28s0p*0+q9cj6o*q+yl)8mh55'
 debugging = socket.gethostname() in ['Thinkpad', 'lenovo-PC']
 DEBUG = debugging
 
-if not debugging:
-    import sys
-    reload(sys)
-    sys.setdefaultencoding('utf-8')
-
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*']
@@ -46,7 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'X', 'base', 'addr', 'sms', 'filter', 'api','extra',
+    'X', 'base', 'addr', 'sms', 'filter', 'api', 'extra',
 )
 
 MIDDLEWARE_CLASSES = (
