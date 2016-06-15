@@ -2294,7 +2294,7 @@ if (!Date.prototype.format) {
     }, {
         text: '下载报帐附件', type: 'function',
         action: function (grid, record) {
-            Ext.Msg.alert('下载报帐附件', '<a href="extra/si-pay-package-download/' + record.get('package') + '/">下载报帐附件</a>');
+            Ext.Msg.alert('下载报帐附件', '<a href="extra/si-pay-package-download/' + record.get('package') + '/" target="_blank">下载报帐附件</a>');
         }
     }]
 });Ext.define('X.view.SI_PayPackageWindow', {

@@ -263,6 +263,19 @@ def si_pay_package_download(request, package):
         os.remove(file_path)
 
         os.rmdir(os.path.join(tempdir.path, si_pay.pay_no))
+
+    #合同
+    file_path = os.path.join(tempdir.path, u'合作业务报帐合同清单.xls').encode('utf8')
+    open(file_path, 'w').write(
+        unicode(get_template(
+            'si_contract_print.html'
+        ).render(
+            Context({'si_contract_list': SI_Contract.objects.all().filter(id__in=[si_pay.contract_id for si_pay in si_pay_list])})
+        )).encode('utf8')
+    )
+    zfile.write(file_path, file_path.replace(tempdir.path, ''))
+    os.remove(file_path)
+
     os.rmdir(tempdir.path)
     zfile.close()
 
@@ -270,7 +283,7 @@ def si_pay_package_download(request, package):
     tempfile.close()
     response = HttpResponse(zdata)
     response['Content-Type'] = 'application/octet-stream'
-    response['Content-Disposition'] = 'attachment; filename=%s.rar' % package
+    response['Content-Disposition'] = 'attachment; filename=%s.zip' % package
     return response
 
 

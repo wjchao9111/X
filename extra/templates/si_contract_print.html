@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
-    <TITLE> 增值税专用发票交接登记表 </TITLE>
+    <TITLE> 合作业务报帐合同清单 </TITLE>
     <style type="text/css">
         table {
             margin: 3px;
@@ -62,7 +62,7 @@
 <table width="100%">
     <tr>
         <td colspan="14" align="center" style="border : 0px solid;">
-            <p style="font-size: larger;font-weight: bold;">增值税专用发票交接登记表</p>
+            <p style="font-size: larger;font-weight: bold;">合作业务报帐合同清单</p>
         </td>
     </tr>
     <tr>
@@ -72,36 +72,36 @@
     </tr>
     <tr>
         <td>序号</td>
-        <td>报账单号</td>
-        <td>供应商名称</td>
-        <td>货物或者应税劳务名称</td>
-        <td>不含税价</td>
-        <td>税率</td>
-        <td>含税总额</td>
-        <td>增值税专用发票编号</td>
-        <td>发票代码</td>
-        <td>开票日期</td>
-        <td>收票时间</td>
-        <td>交接时间</td>
-        <td>交接人</td>
-        <td>接收人</td>
+        <td>合作伙伴名称</td>
+        <td>业务名称</td>
+        <td>开票税率</td>
+        <td>分成比例</td>
+        <td>联系人</td>
+        <td>联系电话</td>
+        <td>合同编号</td>
+        <td>签署日期</td>
+        <td>合同年限</td>
+        <td>合同终止日</td>
+        <td>业务下线日</td>
+        <td>变更记录</td>
+        <td>备注</td>
     </tr>
-    {% for si_invoice in si_invoice_list %}
+    {% for si_contract in si_contract_list %}
         <tr>
             <td>{{ forloop.counter }}</td>
-            <td class="text">{{ si_invoice.pay.pay_no }}</td>
-            <td>{{ si_invoice.si_name }}</td>
-            <td>{{ si_invoice.goods }}</td>
-            <td>{{ si_invoice.tax_del }}</td>
-            <td>{{ si_invoice.tax_rate }}</td>
-            <td>{{ si_invoice.tax_add }}</td>
-            <td>{{ si_invoice.no }}</td>
-            <td>{{ si_invoice.code }}</td>
-            <td>{{ si_invoice.draw_date }}</td>
-            <td>{{ si_invoice.recv_date }}</td>
-            <td></td>
-            <td>李艳蕾</td>
-            <td>高慧燕</td>
+            <td>{{ si_contract.si_name}}</td>
+            <td>{{ si_contract.prd_name }}</td>
+            <td>{{ si_contract.tax_rate }}</td>
+            <td class="text">{{ si_contract.si_share }}</td>
+            <td>{{ si_contract.si_contact }}</td>
+            <td>{{ si_contract.si_phone }}</td>
+            <td>{{ si_contract.no }}</td>
+            <td>{{ si_contract.sign_date }}</td>
+            <td>{{ si_contract.vilid_term }}</td>
+            <td>{{ si_contract.exp_date }}</td>
+            <td>{% if si_contract.off_date %} {{ si_contract.off_date }} {% endif %}</td>
+            <td>{{ si_contract.change_log }}</td>
+            <td>{{ si_contract.note }}</td>
         </tr>
     {% endfor %}
 </table>

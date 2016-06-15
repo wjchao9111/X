@@ -17,7 +17,6 @@ class SI_Contract(models.Model):
     eff_date = models.DateField(verbose_name=u'合同起始日')
     vilid_term = models.CharField(max_length=50, verbose_name=u'合同年限')
     exp_date = models.DateField(verbose_name=u'合同终止日')
-    exp_date = models.DateField(verbose_name=u'合同终止日')
     delay_month = models.IntegerField(default=0, verbose_name=u'延期支付月数')
     off_date = models.DateField(null=True, blank=True, verbose_name=u'业务下线日')
     change_log = models.CharField(null=True, blank=True, max_length=500, verbose_name=u'变更记录')
