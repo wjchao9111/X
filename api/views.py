@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 import hashlib
 import pickle
-import random
-import string
 import time
 
 import redis
 from django.views.decorators.csrf import csrf_exempt
 
+from X.tools import get_random_str
 from X.tools.middleware import JsonResponse
 from X.tools.model import get_object
 from base.models import User
@@ -207,15 +206,3 @@ def get_sha1(array):
     tmp_str = ''.join(tmp_array)
     hash_value = hashlib.sha1(tmp_str).hexdigest()
     return hash_value
-
-
-def get_random_str(str_len=32):
-    rule = string.letters + string.digits
-    str = random.sample(rule, str_len)
-    return "".join(str)
-
-
-def get_random_num(str_len=32):
-    rule = string.digits
-    str = random.sample(rule, str_len)
-    return "".join(str)

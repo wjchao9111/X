@@ -1,4 +1,6 @@
 import importlib
+import random
+import string
 import time
 
 from X.tools.log import log
@@ -121,3 +123,15 @@ def lazy_loader_const(function):
         return value
 
     return decorator
+
+
+def get_random_str(str_len=32):
+    rule = string.letters + string.digits
+    str = random.sample(rule, str_len)
+    return "".join(str)
+
+
+def get_random_num(str_len=32):
+    rule = string.digits
+    str = random.sample(rule, str_len)
+    return "".join(str)

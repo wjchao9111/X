@@ -16,7 +16,6 @@ from django.utils.http import urlquote
 from hubarcode.code128 import Code128Encoder
 
 from X.settings import BASE_DIR
-from X.tools.log import log
 from X.tools.middleware import JsonResponse
 from X.tools.model import object_list, auto_filter, json_success
 from X.tools.storage import TempFile

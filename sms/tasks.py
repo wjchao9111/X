@@ -5,6 +5,7 @@ import xlrd
 from celery import shared_task
 from django.db import transaction
 
+from X.tools import get_random_num
 from X.tools import lazy_loader_const
 from X.tools.log import log
 from addr.models import AddressGroup
@@ -18,6 +19,7 @@ class TaskLoader:
         self.sms_pos = 0
         self.sms_size = 0
         self.prepare()
+        self.random_number = '4' + get_random_num(str_len=3)
 
     def prepare(self):
         if self.task.type in ['default', 'quick']:
@@ -113,6 +115,8 @@ class TaskLoader:
             msg_task=task,
         )
         msg.msg_count = get_msg_count(msg)
+        if msg.msg_count > 1:
+            msg.src_id += self.random_number
         return msg
 
     def get_excel_value(self, val):

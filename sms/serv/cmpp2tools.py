@@ -25,6 +25,8 @@ class Cmpp2SendTaskLoadHandler(sms.serv.smstools.CommonSendTaskLoadHandler):
         cmpp2send.msg_src = cmpp2cfg.cmpp_sp_id
         cmpp2send.service_id = cmpp2cfg.cmpp_service_id
         cmpp2send.src_id = cmpp2cfg.cmpp_src_id + msg_obj.src_id
+        if len(cmpp2send.src_id) > 20:
+            cmpp2send.src_id = cmpp2send.src_id[:20]
         cmpp2send.dest_terminal_id = msg_obj.dest_terminal_id
         cmpp2send.msg_content = msg_obj.msg_content
         cmpp2send.registered_delivery = msg_obj.registered_delivery
