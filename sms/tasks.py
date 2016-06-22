@@ -9,7 +9,7 @@ from X.tools import get_random_num
 from X.tools import lazy_loader_const
 from X.tools.log import log
 from addr.models import AddressGroup
-from sms.models import MsgSend, SendTask
+from sms.models import MsgSend, SendTask, RandomSuffix
 
 
 class TaskLoader:
@@ -116,7 +116,8 @@ class TaskLoader:
         )
         msg.msg_count = get_msg_count(msg)
         if msg.msg_count > 1:
-            msg.src_id += self.random_number
+            if RandomSuffix.objects.all().filter(dept_id=msg.user.dept.root_id).count():
+                msg.src_id += self.random_number
         return msg
 
     def get_excel_value(self, val):

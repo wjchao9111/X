@@ -66,6 +66,13 @@ class Processor(models.Model):
         return u'%s' % self.pid
 
 
+class RandomSuffix(models.Model):
+    dept = models.OneToOneField(Dept, related_name='randomsuffix', verbose_name=u'企业')
+
+    def __unicode__(self):
+        return u'%s' % self.dept
+
+
 class CommonSendTask(models.Model):
     type_choices = (('default', u'普通任务'), ('dynamic', u'动态任务'),)
     stat_choices = (
