@@ -21,7 +21,7 @@ class Cmpp2Handler:
     def sms_send(self, channel, msg):
         sms = msg.get('sms_obj')
         sms.sms_send_time = datetime.datetime.now()
-        # sms.sms_stat='send'
+        sms.sms_stat='send'
         sms.save()
         self.msg_send_update(sms.sms_msg)
 
