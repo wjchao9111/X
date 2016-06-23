@@ -116,7 +116,7 @@ class TaskLoader:
         )
         msg.msg_count = get_msg_count(msg)
         if msg.msg_count > 1:
-            if RandomSuffix.objects.all().filter(dept_id=msg.user.dept.root_id).count():
+            if RandomSuffix.objects.all().filter(dept_id=msg.msg_user.dept.root_id).count():
                 msg.src_id += self.random_number
         return msg
 
