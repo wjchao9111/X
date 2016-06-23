@@ -369,7 +369,7 @@ class SendTaskClear:
     @sms_exception
     def clear_all_quick():
         task_list = []
-        for task in SendTask.objects.filter(stat__in=['pre.end', 'send.start', 'send.end']):
+        for task in SendTask.objects.filter(stat__in=['pre.end', 'pre.fail', 'send.start', 'send.end']):
             if SendTaskClear.all_done(task):
                 task_list.append(task)
                 try:
