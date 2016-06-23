@@ -380,7 +380,7 @@ class Cmpp2Client:
         if self.commit_queue.qsize() <= 0:
             msg_list = self.task_queue.fetch_sms(count=self.buffer_size)
             for msg in msg_list:
-                self.commit_queue.put((msg, True))
+                self.commit_queue.put((msg, False))# True 一次重发
             if not msg_list:
                 sleep(self.fetch_interval)
                 self.send_once_last_time += self.fetch_interval
