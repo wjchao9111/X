@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
+import Queue
 import thread
 import threading
-import Queue
 import time
 
 import gevent
+import gevent.queue
 import gevent.socket
 import gevent.ssl
-import gevent.queue
 
 from X.tools.log import log
 
@@ -170,6 +170,41 @@ def keep_interval(function):
             else:
                 return None
         setattr(sender, last_time_name, last_time + interval)
+        return function(*args, **kwargs)
+
+    return decorator
+
+
+def keep_interval_slow(function):  # slow
+    def decorator(*args, **kwargs):
+        sender = args[0]
+
+        interval_name = '%s_interval' % function.func_name
+        last_time_name = '%s_last_time' % function.func_name
+        sleep_mode_name = '%s_sleep_mode' % function.func_name
+
+        if not hasattr(sender, interval_name):
+            setattr(sender, interval_name, 10)
+        interval = getattr(sender, interval_name)
+
+        if not hasattr(sender, last_time_name):
+            setattr(sender, last_time_name, time.time() - interval)
+        last_time = getattr(sender, last_time_name)
+
+        if hasattr(sender, sleep_mode_name):
+            sleep_mode = getattr(sender, sleep_mode_name)
+        else:
+            sleep_mode = False
+
+        now = time.time()
+        if now < last_time + interval:
+            if sleep_mode:
+                sleep(last_time + interval - now)
+            else:
+                return None
+        # setattr(sender, last_time_name, last_time + interval)
+        setattr(sender, last_time_name, time.time())
+
         return function(*args, **kwargs)
 
     return decorator

@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 
-import hashlib
 import Queue
+import hashlib
 import time
 
-from X.tools.task import sleep, gevent_task, keep_interval, delay_exec
+import sms.serv.smstools
 from X.tools.exception import sms_exception
 from X.tools.log import log
-from sms.serv.socketlib import SocketClient, SSLClient
+from X.tools.task import sleep, gevent_task, keep_interval, delay_exec, keep_interval_slow
 from sms.serv.cmpp2frame import *
 from sms.serv.cmpp2handler import Cmpp2Handler
-import sms.serv.smstools
+from sms.serv.socketlib import SocketClient, SSLClient
 
 
 # 1、重连之后清空slide window 2、设置手动重启功能
@@ -257,7 +257,8 @@ class Cmpp2Client:
 
     send_once_sleep_mode = True
 
-    @keep_interval
+    # @keep_interval
+    @keep_interval_slow
     def send_once(self):
         if self.send_queue.qsize() <= 0:
             self.submit_one_sms()
@@ -380,7 +381,7 @@ class Cmpp2Client:
         if self.commit_queue.qsize() <= 0:
             msg_list = self.task_queue.fetch_sms(count=self.buffer_size)
             for msg in msg_list:
-                self.commit_queue.put((msg, False))# True 一次重发
+                self.commit_queue.put((msg, False))  # True 一次重发
             if not msg_list:
                 sleep(self.fetch_interval)
                 self.send_once_last_time += self.fetch_interval
