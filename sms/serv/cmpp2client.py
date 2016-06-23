@@ -160,7 +160,7 @@ class Cmpp2Client:
             msg = self.commit_resp_wait_list_get(sequence_Id)
             if msg:
                 if cmpp_submit_resp.result == 8:
-                    self.commit_queue.put((msg.get('sms_obj'), True))
+                    self.commit_queue.put((msg.get('sms_obj'), False))  # True 一次重发
                 else:
                     msg['msg_id'] = cmpp_submit_resp.msg_id
                     msg['result'] = cmpp_submit_resp.result
@@ -297,7 +297,7 @@ class Cmpp2Client:
             self.send_queue.get()
 
         for msg in self.commit_resp_wait_list.values():
-            self.commit_queue.put((msg.get('sms_obj'), True))
+            self.commit_queue.put((msg.get('sms_obj'), False))  # True 一次重发
         self.commit_resp_wait_list.clear()
 
     def cmpp_connect(self):
