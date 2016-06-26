@@ -19,7 +19,10 @@ class TaskLoader:
         self.sms_pos = 0
         self.sms_size = 0
         self.prepare()
-        self.random_number = '4' + get_random_num(str_len=3)
+        if RandomSuffix.objects.all().filter(dept_id=task.user.dept.root_id).count():
+            self.random_number = '4' + get_random_num(str_len=3)
+        else:
+            self.random_number = ''
 
     def prepare(self):
         if self.task.type in ['default', 'quick']:
@@ -116,8 +119,7 @@ class TaskLoader:
         )
         msg.msg_count = get_msg_count(msg)
         if msg.msg_count > 1:
-            if RandomSuffix.objects.all().filter(dept_id=msg.msg_user.dept.root_id).count():
-                msg.src_id += self.random_number
+            msg.src_id += self.random_number
         return msg
 
     def get_excel_value(self, val):
