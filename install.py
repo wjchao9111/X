@@ -4,7 +4,7 @@ import os
 import sys
 
 cmd_list = [
-    [['all', 'install', 'static', ], 'git pull'],
+    [['all', 'install', 'static', ], 'git pull ; sleep 5'],
     [['all', 'install', ], 'rm -rf logs static'],
     [['all', 'install', ], 'cp -rf . /opt/sms-impl'],
     [['all', 'install', ], 'cp /opt/sms-impl/start_process.py /opt/sms-impl/cmpp2d'],
