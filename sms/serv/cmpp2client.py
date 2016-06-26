@@ -439,7 +439,7 @@ class Cmpp2Client:
         if resend:
             self.submit_timeout(cmpp_submit_frame.sequence_Id, cmpp_submit)
         else:
-            self.submit_timeout_2(cmpp_submit_frame.sequence_Id, cmpp_submit)
+            self.submit_timeout_handler_send(cmpp_submit_frame.sequence_Id, cmpp_submit)
 
     submit_timeout_delay = 60
 
@@ -453,9 +453,11 @@ class Cmpp2Client:
         except:
             pass
 
+    submit_timeout_handler_send_delay = 60
+
     @gevent_task
     @delay_exec
-    def submit_timeout_2(self, seq_id, msg):
+    def submit_timeout_handler_send(self, seq_id, msg):
         try:
             msg = self.commit_resp_wait_list_get(seq_id, raise_error=False)
             if msg:
