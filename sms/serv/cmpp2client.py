@@ -24,7 +24,7 @@ class Cmpp2Client:
         # 默认参数设定
         self.fetch_size = self.config.cmpp_commit_speed  # 每次数据库中读取待发短信量
         self.buffer_size = 10  # 短信提交队列大小
-        self.wait_size = 1024
+        self.wait_size = 32  # 滑动窗口大小
         self.bulk_size = 100  # 待发短信批量入库块大小
         self.fetch_interval = 1
 
