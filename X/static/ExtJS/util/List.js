@@ -153,6 +153,11 @@ Ext.define('X.util.List', {
                 menu.push({text: text, type: type, action: action, handler: on_click});
             }
         }
+        var contextmenu = new Ext.menu.Menu({
+            id: 'theContextMenu',
+            items: menu
+        });
+
         var columns = [];
         for (var i = 0; i < model.fields.length; i++) {
             var field = model.fields.getAt(i);
@@ -188,7 +193,25 @@ Ext.define('X.util.List', {
                 displayInfo: true,
                 displayMsg: '显示清单 {0} - {1} of {2}',
                 emptyMsg: '' //'没有清单'
-            })
+            }),
+            listeners: {
+                itemcontextmenu: function (view, record, item, index, e) {
+                    e.preventDefault();
+                    contextmenu.showAt(e.getXY());
+                },
+                itemdblclick: function (view, record, item, index, e) {
+                    e.preventDefault();
+                    for (var i in menu) {
+                        var text = menu[i].text;
+                        var type = menu[i].type;
+                        var action = menu[i].action;
+                        if (text == '修改' || text == '清单') {
+                            on_click(menu[i]);
+                            break;
+                        }
+                    }
+                }
+            }
         });
         me.callParent(arguments);
     }
