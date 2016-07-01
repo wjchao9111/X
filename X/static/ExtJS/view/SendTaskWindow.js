@@ -1,8 +1,8 @@
 Ext.define('X.view.SendTaskWindow', {
     extend: 'X.util.Window',
 
-    height: 450,
-    width: 400,
+    height: 530,
+    width: 600,
     base_title: '发送任务',
     base_url: 'sms/task-{0}/',
     model_name: 'X.model.SendTaskModel',

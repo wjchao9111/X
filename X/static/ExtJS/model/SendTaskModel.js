@@ -26,7 +26,7 @@ Ext.define('X.model.SendTaskModel', {
         {name: 'groups', label: '通讯录组', field: 'hiddenfield'},
         {name: 'groups-display', label: '通讯录组', field: 'displayfield'},
         {name: 'file', label: '号码文件', field: 'filefield', blank: true},
-        {name: 'content', label: '内容', show: true, field: 'textareafield', field_cfg: {height: 80}},
+        {name: 'content', label: '内容', show: true, field: 'textareafield', field_cfg: {height: 160}},
         {name: 'init', label: '创建时间', show: true},
         {name: 'stat', label: '状态'},
         {name: 'stat_display', label: '状态', show: true},

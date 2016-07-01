@@ -1227,7 +1227,7 @@ if (!Date.prototype.format) {
         {name: 'groups', label: '通讯录组', field: 'hiddenfield'},
         {name: 'groups-display', label: '通讯录组', field: 'displayfield'},
         {name: 'file', label: '号码文件', field: 'filefield', blank: true},
-        {name: 'content', label: '内容', show: true, field: 'textareafield', field_cfg: {height: 80}},
+        {name: 'content', label: '内容', show: true, field: 'textareafield', field_cfg: {height: 160}},
         {name: 'init', label: '创建时间', show: true},
         {name: 'stat', label: '状态'},
         {name: 'stat_display', label: '状态', show: true},
@@ -2456,8 +2456,8 @@ if (!Date.prototype.format) {
 });Ext.define('X.view.SendTaskWindow', {
     extend: 'X.util.Window',
 
-    height: 450,
-    width: 400,
+    height: 530,
+    width: 600,
     base_title: '发送任务',
     base_url: 'sms/task-{0}/',
     model_name: 'X.model.SendTaskModel',
