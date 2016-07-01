@@ -1866,7 +1866,7 @@ if (!Date.prototype.format) {
                         {
                             xtype: 'component',
                             flex: 1,
-                            html: '<p style="font-size:16px;font-weight:bold;">X SYSTEM</p>'
+                            html: '<p style="font-size:16px;font-weight:bold;">石家庄移动软MAS平台</p>'
                         },
                         {
                             xtype: 'component',
@@ -1932,14 +1932,15 @@ if (!Date.prototype.format) {
                         {
                             xtype: 'panel',
                             closable: false,
-                            html: '<strong>文档下载：</strong><br>' +
+                            /*html: '<strong>文档下载：</strong><br>' +
                             '<a href="static/doc/使用文档.zip">使用文档</a><br>' +
                             '<a href="static/doc/接口文档.docx">接口文档</a><br>' +
                             '<strong>老接口迁移demo：</strong><br>' +
                             '<a href="static/doc/javademo.rar">java demo</a><br>' +
                             '<a href="static/doc/csharpdemo.rar">c# demo</a><br>' +
                             '<strong>新接口开发demo：</strong><br>' +
-                            '阅读接口文档即可',
+                            '阅读接口文档即可',*/
+                            html:'<iframe src="static/doc/welcome.html" frameborder="0" width="100%" height="100%"></iframe>',
                             autoScroll: true,
                             title: '欢迎使用'
                         }

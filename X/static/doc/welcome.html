@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>welcome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+         <script src="/static/bootstrap/js/html5shiv.js"></script>
+         <script src="/static/bootstrap/js/respond.min.js"></script>
+      <![endif]-->
+    <script src="/static/bootstrap/js/jquery.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="/static/ExtJS/ext-all.js"></script>
+    <script src="/static/ExtJS/ext-theme-neptune.js"></script>
+    <script src="/static/ExtJS/ext-locale-zh_CN.js"></script>
+    <link rel="stylesheet" href="/static/ExtJS/css/ext-theme-neptune-all.css">
+
+    <script type="text/javascript">
+        var show_use = function () {
+            Ext.Msg.show({
+                title: "使用说明",
+                msg: "<img src='/static/img/dynamic.png'>",
+                minWidth: 936,
+                minHeight: 660
+            });
+        }
+    </script>
+</head>
+<body>
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <h1>欢迎使用软MAS平台</h1>
+        <p>软MAS平台是部署中国移动云平台的集中建设、集中运营、集中维护的消息类业务平台，满足客户消息发布及互动需求，为集团客户提供基于短信的信息化应用服务。</p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-4">
+            <h2>基础功能</h2>
+            <p>平台支持短信的单发、群发，支持获取短信的状态报告与短信回复。平台支持通讯录的录入、导入、导出、分组，可选择通讯录组群发短信。</p>
+            <p><a class="btn btn-default" href="/static/doc/使用文档.zip" role="button">使用文档 &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>特色功能</h2>
+            <p>平台支持按照格式配置短信模板，设定自定义字段，上传包含自定义字段数据的Excel 数据表格，实现工资单、短信账单等一对一个性短信发送。</p>
+            <p><a class="btn btn-default" onclick="show_use()" role="button">动态短信 &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>开发接口</h2>
+            <p>平台支持通过API接口发送短信、接收短信、获取状态报告。接口类型为HTTP，报文格式为JSON。接口的使用方法请参见接口文档。</p>
+            <p><a class="btn btn-default" href="/static/doc/接口文档.docx" role="button">接口文档 &raquo;</a></p>
+        </div>
+    </div>
+    <hr>
+
+    <footer>
+        <p>平台默认发送范围为省内移动号码，可向客户经理申请开通全国和异网短信发送业务。（全国业务开通时间较长）</p>
+        <p>&copy; 2016 中国移动通信集团河北有限公司石家庄分公司.</p>
+    </footer>
+</div> <!-- /container -->
+</body>
+</html>
