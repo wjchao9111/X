@@ -14,6 +14,7 @@ from X.tools import lazy_loader_const, log
 from X.tools.model import get_object
 from api.models import WxltConfig
 from api.views import redis_pop_obj
+from base.models import User
 from sms.tasks import send_task_prepare_sync
 from sms.views import get_task
 
@@ -156,8 +157,10 @@ def smsSend(smsSendRequest):
                 'content': Content,
                 'phones': Mobiles,
             }
+            cur_user = User.objects.get(id=uid)
             task = get_task(j_task)
             task.user_id = uid
+            task.suffix = cur_user.suffix
             task.save()
             taskcount, id_list = send_task_prepare_sync(task)
 

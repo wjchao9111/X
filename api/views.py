@@ -59,9 +59,11 @@ def send_sms(request):
         return JsonResponse({'success': False, 'error_code': 'Token validate failed'})
     result_list = []
     # print task_list
+    cur_user = User.objects.get(id=uid)
     for j_task in task_list:
         task = get_task(j_task)
         task.user_id = uid
+        task.suffix = cur_user.suffix
         task.save()
         taskcount, id_list = send_task_prepare_sync(task)
         result_list.append({'count': taskcount, 'id_list': id_list})
