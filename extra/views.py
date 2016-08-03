@@ -230,9 +230,9 @@ def si_pay_package_print(request, package, template):
                 ), si_pay_list=si_pay_list, month=month
             )
         )
-        return render(request, 'si_report_print.%s.html' % template, {
-            'min_report': min_report, 'month_report_list': month_report_list, 'month_list': month_list
-        })
+    return render(request, 'si_report_print.%s.html' % template, {
+        'min_report': min_report, 'month_report_list': month_report_list, 'month_list': month_list
+    })
 
 
 def si_pay_package_download(request, package):
