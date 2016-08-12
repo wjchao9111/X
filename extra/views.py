@@ -154,8 +154,8 @@ def si_pay_verify(request, si_pay_id):
         tax_del_sum += si_invoice.tax_del
         if si_invoice.tax_rate != si_pay.tax_rate:
             return JsonResponse({'success': False, 'message': u'发票%s税率与报表不一致！' % (si_invoice.no)})
-        if si_invoice.si_name not in [si_pay.si_name, si_pay.si_name.replace('VSP', '')]:
-            return JsonResponse({'success': False, 'message': u'发票%s供应商名称与报表不一致！' % (si_invoice.no)})
+        #if si_invoice.si_name not in [si_pay.si_name, si_pay.si_name.replace('VSP', '')]:
+        #    return JsonResponse({'success': False, 'message': u'发票%s供应商名称与报表不一致！' % (si_invoice.no)})
     if tax_del_sum != si_pay.tax_del:
         return JsonResponse({'success': False, 'message': u'发票不含税价合计与报表不一致！'})
     if len(SI_EmptyPay.objects.all()) == 0:
