@@ -105,11 +105,11 @@ def si_pay_upload(request):
         si_pay.tax_add_raw = ws.cell(rowx, 5).value
         si_pay.tax_del_raw = ws.cell(rowx, 6).value
         si_pay.tax_raw = ws.cell(rowx, 7).value
-        si_pay.adjust = ws.cell(rowx, 8).value
-        si_pay.tax_add = ws.cell(rowx, 9).value
-        si_pay.tax_del = ws.cell(rowx, 10).value
-        si_pay.tax = ws.cell(rowx, 11).value
-        si_pay.tax_compute = ws.cell(rowx, 12).value
+        si_pay.adjust = ws.cell(rowx, 12).value  # 8
+        si_pay.tax_add = ws.cell(rowx, 13).value  # 9
+        si_pay.tax_del = ws.cell(rowx, 14).value  # 10
+        si_pay.tax = ws.cell(rowx, 15).value  # 11
+        si_pay.tax_compute = ws.cell(rowx, 16).value  # 12
         si_pay.month = month
         if not si_pay.user:
             si_pay.user_id = request.session.get('user').get('id')
@@ -150,14 +150,18 @@ def si_pay_verify(request, si_pay_id):
         return JsonResponse({'success': False, 'message': u'报账单的状态是已分配的才允许执行该操作！'})
 
     tax_del_sum = 0
+    tax_add_sum = 0
     for si_invoice in si_pay.si_invoice_set.all():
         tax_del_sum += si_invoice.tax_del
+        tax_add_sum += si_invoice.tax_add
         if si_invoice.tax_rate != si_pay.tax_rate:
             return JsonResponse({'success': False, 'message': u'发票%s税率与报表不一致！' % (si_invoice.no)})
-        #if si_invoice.si_name not in [si_pay.si_name, si_pay.si_name.replace('VSP', '')]:
-        #    return JsonResponse({'success': False, 'message': u'发票%s供应商名称与报表不一致！' % (si_invoice.no)})
+            # if si_invoice.si_name not in [si_pay.si_name, si_pay.si_name.replace('VSP', '')]:
+            #    return JsonResponse({'success': False, 'message': u'发票%s供应商名称与报表不一致！' % (si_invoice.no)})
     if tax_del_sum != si_pay.tax_del:
         return JsonResponse({'success': False, 'message': u'发票不含税价合计与报表不一致！'})
+    if abs(tax_add_sum - si_pay.tax_add) > 0.2:
+        return JsonResponse({'success': False, 'message': u'发票含税价合计与报表差异过大！'})
     if len(SI_EmptyPay.objects.all()) == 0:
         return JsonResponse({'success': False, 'message': u'空报账单号码资源不足，请联系部门报帐员！'})
 
@@ -264,13 +268,14 @@ def si_pay_package_download(request, package):
 
         os.rmdir(os.path.join(tempdir.path, si_pay.pay_no))
 
-    #合同
+    # 合同
     file_path = os.path.join(tempdir.path, u'合作业务报帐合同清单.xls').encode('utf8')
     open(file_path, 'w').write(
         unicode(get_template(
             'si_contract_print.html'
         ).render(
-            Context({'si_contract_list': SI_Contract.objects.all().filter(id__in=[si_pay.contract_id for si_pay in si_pay_list])})
+            Context({'si_contract_list': SI_Contract.objects.all().filter(
+                id__in=[si_pay.contract_id for si_pay in si_pay_list])})
         )).encode('utf8')
     )
     zfile.write(file_path, file_path.replace(tempdir.path, ''))
