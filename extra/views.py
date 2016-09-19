@@ -177,7 +177,7 @@ def si_pay_verify(request, si_pay_id):
 
 def si_pay_print(request, si_pay_id):
     si_pay = model_filter(request, SI_Pay.objects.all()).get(id=si_pay_id)
-    if si_pay.pay_stat != 'verify':
+    if si_pay.pay_stat not in ['verify', 'close']:
         return render(request, "echo.html", {'message': u'报账单的状态是已验证的才允许执行该操作！'})
 
     tempfile = TempFile()
