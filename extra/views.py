@@ -102,9 +102,9 @@ def si_pay_upload(request):
         si_pay.prd_code = str(int(ws.cell(rowx, 2).value))
         si_pay.si_name = ws.cell(rowx, 3).value
         si_pay.tax_rate = str(int(ws.cell(rowx, 4).value * 100)) + '%'
-        si_pay.tax_add_raw = ws.cell(rowx, 5).value
-        si_pay.tax_del_raw = ws.cell(rowx, 6).value
-        si_pay.tax_raw = ws.cell(rowx, 7).value
+        si_pay.tax_add_raw = ws.cell(rowx, 9).value
+        si_pay.tax_del_raw = ws.cell(rowx, 10).value
+        si_pay.tax_raw = ws.cell(rowx, 11).value
         si_pay.adjust = ws.cell(rowx, 12).value  # 8
         si_pay.tax_add = ws.cell(rowx, 13).value  # 9
         si_pay.tax_del = ws.cell(rowx, 14).value  # 10
