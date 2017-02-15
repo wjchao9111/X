@@ -65,7 +65,7 @@ def get_contract_by_pay(si_pay):
 
 def si_pay_allot(si_pay):
     si_contract = get_contract_by_pay(si_pay)
-    if si_contract:
+    if si_contract and si_pay.tax_del>0:
         si_pay.contract = si_contract
         si_pay.allot_time = datetime.datetime.now()
         si_pay.pay_stat = 'allot'
